@@ -7,6 +7,22 @@
 
 In-depth documentation on this SDK is available at [s-one.finance](http://docs.s-one.finance/).
 
+## Install
+
+To install this @s-one-finance/sdk-core:
+
+Using npm cli:
+
+```
+npm install --save-dev @s-one-finance/sdk-core@latest
+```
+
+Using yarn cli:
+
+```
+yarn add -D @s-one-finance/sdk-core@latest
+```
+
 ## Running tests
 
 To run the tests, follow these steps. You must have at least node v10 and [yarn](https://yarnpkg.com/) installed.
