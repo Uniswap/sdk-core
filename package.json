@@ -1,17 +1,18 @@
 {
-  "name": "@uniswap/sdk",
+  "name": "@soneswap/sdk-core",
   "license": "MIT",
-  "version": "3.0.3",
-  "description": "🛠 An SDK for building applications on top of Uniswap.",
+  "version": "1.0.0",
+  "description": "🛠 An SDK for building applications on top of S-ONE Finance Swap.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/Uniswap/uniswap-sdk.git",
+  "repository": "https://github.com/S-ONE-Finance/soneswap-sdk-core.git",
   "keywords": [
-    "uniswap",
-    "ethereum"
+    "soneswap",
+    "ethereum",
+    "uniswap"
   ],
   "module": "dist/sdk.esm.js",
   "scripts": {

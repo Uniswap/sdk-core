@@ -1,11 +1,11 @@
-# Uniswap SDK
+# S-ONE Finance Swap SDK
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Actions Status](https://github.com/Uniswap/uniswap-sdk/workflows/CI/badge.svg)](https://github.com/Uniswap/uniswap-sdk)
-[![npm version](https://img.shields.io/npm/v/@uniswap/sdk/latest.svg)](https://www.npmjs.com/package/@uniswap/sdk/v/latest)
-[![npm bundle size (scoped version)](https://img.shields.io/bundlephobia/minzip/@uniswap/sdk/latest.svg)](https://bundlephobia.com/result?p=@uniswap/sdk@latest)
+<!-- [![Actions Status](https://github.com/S-ONE-Finance/soneswap-sdk/workflows/CI/badge.svg)](https://github.com/Uniswap/soneswap-sdk) -->
+<!-- [![npm version](https://img.shields.io/npm/v/@soneswap/sdk/latest.svg)](https://www.npmjs.com/package/@soneswap/sdk/v/latest) -->
+<!-- [![npm bundle size (scoped version)](https://img.shields.io/bundlephobia/minzip/@soneswap/sdk/latest.svg)](https://bundlephobia.com/result?p=@soneswap/sdk@latest) -->
 
-In-depth documentation on this SDK is available at [uniswap.org](https://uniswap.org/docs/v2/SDK/getting-started/).
+In-depth documentation on this SDK is available at [s-one.finance](http://docs.s-one.finance/).
 
 ## Running tests
 
@@ -14,13 +14,13 @@ To run the tests, follow these steps. You must have at least node v10 and [yarn]
 First clone the repository:
 
 ```sh
-git clone https://github.com/Uniswap/uniswap-sdk.git
+git clone https://github.com/S-ONE-Finance/soneswap-sdk-core.git
 ```
 
-Move into the uniswap-sdk working directory
+Move into the soneswap-sdk working directory
 
 ```sh
-cd uniswap-sdk/
+cd soneswap-sdk-core
 ```
 
 Install dependencies
