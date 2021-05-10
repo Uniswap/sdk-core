@@ -45,7 +45,7 @@ describe('CurrencyAmount', () => {
     expect(() =>
       CurrencyAmount.fromFractionalAmount(
         new Token(ChainId.MAINNET, ADDRESS_ONE, 18),
-        JSBI.add(JSBI.multiply(MaxUint256, JSBI.BigInt(2)), JSBI.BigInt(1)),
+        JSBI.add(JSBI.multiply(MaxUint256, JSBI.BigInt(2)), JSBI.BigInt(2)),
         JSBI.BigInt(2)
       )
     ).toThrow('AMOUNT')
@@ -53,7 +53,7 @@ describe('CurrencyAmount', () => {
   it('token amount numerator can be gt. uint256 if denominator is gt. 1', () => {
     const amount = CurrencyAmount.fromFractionalAmount(
       new Token(ChainId.MAINNET, ADDRESS_ONE, 18),
-      JSBI.add(MaxUint256, JSBI.BigInt(1)),
+      JSBI.add(MaxUint256, JSBI.BigInt(2)),
       2
     )
     expect(amount.numerator).toEqual(JSBI.add(JSBI.BigInt(1), MaxUint256))
