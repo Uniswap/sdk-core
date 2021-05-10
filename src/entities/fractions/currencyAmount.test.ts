@@ -36,4 +36,40 @@ describe('CurrencyAmount', () => {
     const amount = CurrencyAmount.fromRawAmount(new Token(ChainId.MAINNET, ADDRESS_ONE, 18), MaxUint256)
     expect(amount.quotient).toEqual(MaxUint256)
   })
+
+  describe('#toFixed', () => {
+    it('throws for decimals > currency.decimals', () => {
+      const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 0)
+      const amount = CurrencyAmount.fromRawAmount(token, 1000)
+      expect(() => amount.toFixed(3)).toThrow('DECIMALS')
+    })
+    it('is correct for 0 decimals', () => {
+      const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 0)
+      const amount = CurrencyAmount.fromRawAmount(token, 123456)
+      expect(amount.toFixed(0)).toEqual('123456')
+    })
+    it('is correct for 18 decimals', () => {
+      const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 18)
+      const amount = CurrencyAmount.fromRawAmount(token, 1e15)
+      expect(amount.toFixed(9)).toEqual('0.001000000')
+    })
+  })
+
+  describe('#toSignificant', () => {
+    it('does not throw for sig figs > currency.decimals', () => {
+      const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 0)
+      const amount = CurrencyAmount.fromRawAmount(token, 1000)
+      expect(amount.toSignificant(3)).toEqual('1000')
+    })
+    it('is correct for 0 decimals', () => {
+      const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 0)
+      const amount = CurrencyAmount.fromRawAmount(token, 123456)
+      expect(amount.toSignificant(4)).toEqual('123400')
+    })
+    it('is correct for 18 decimals', () => {
+      const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 18)
+      const amount = CurrencyAmount.fromRawAmount(token, 1e15)
+      expect(amount.toSignificant(9)).toEqual('0.001')
+    })
+  })
 })
