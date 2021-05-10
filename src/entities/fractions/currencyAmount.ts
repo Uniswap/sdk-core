@@ -48,7 +48,7 @@ export default class CurrencyAmount<T extends Currency> extends Fraction {
 
   protected constructor(currency: T, numerator: BigintIsh, denominator?: BigintIsh) {
     super(numerator, denominator)
-    invariant(JSBI.lessThanOrEqual(this.numerator, MaxUint256), 'AMOUNT')
+    invariant(JSBI.lessThanOrEqual(this.quotient, MaxUint256), 'AMOUNT')
     this.currency = currency
     this.decimalScale = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(currency.decimals))
   }

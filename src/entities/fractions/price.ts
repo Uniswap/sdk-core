@@ -38,7 +38,10 @@ export default class Price<TBase extends Currency, TQuote extends Currency> exte
     return new Price(this.baseCurrency, other.quoteCurrency, fraction.denominator, fraction.numerator)
   }
 
-  // quotes with floor division
+  /**
+   * Return the amount of quote currency corresponding to a given amount of the base currency
+   * @param currencyAmount the amount of base currency to quote against the price
+   */
   public quote(currencyAmount: CurrencyAmount<TBase>): CurrencyAmount<TQuote> {
     invariant(currencyEquals(currencyAmount.currency, this.baseCurrency), 'TOKEN')
     const result = super.multiply(currencyAmount)

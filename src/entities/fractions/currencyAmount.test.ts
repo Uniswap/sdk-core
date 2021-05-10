@@ -36,6 +36,28 @@ describe('CurrencyAmount', () => {
     const amount = CurrencyAmount.fromRawAmount(new Token(ChainId.MAINNET, ADDRESS_ONE, 18), MaxUint256)
     expect(amount.quotient).toEqual(MaxUint256)
   })
+  it('token amount cannot exceed max uint256', () => {
+    expect(() =>
+      CurrencyAmount.fromRawAmount(new Token(ChainId.MAINNET, ADDRESS_ONE, 18), JSBI.add(MaxUint256, JSBI.BigInt(1)))
+    ).toThrow('AMOUNT')
+  })
+  it('token amount quotient cannot exceed max uint256', () => {
+    expect(() =>
+      CurrencyAmount.fromFractionalAmount(
+        new Token(ChainId.MAINNET, ADDRESS_ONE, 18),
+        JSBI.add(JSBI.multiply(MaxUint256, JSBI.BigInt(2)), JSBI.BigInt(1)),
+        JSBI.BigInt(2)
+      )
+    ).toThrow('AMOUNT')
+  })
+  it('token amount numerator can be gt. uint256 if denominator is gt. 1', () => {
+    const amount = CurrencyAmount.fromFractionalAmount(
+      new Token(ChainId.MAINNET, ADDRESS_ONE, 18),
+      JSBI.add(MaxUint256, JSBI.BigInt(1)),
+      2
+    )
+    expect(amount.numerator).toEqual(JSBI.add(JSBI.BigInt(1), MaxUint256))
+  })
 
   describe('#toFixed', () => {
     it('throws for decimals > currency.decimals', () => {
