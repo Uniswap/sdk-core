@@ -16,8 +16,8 @@ describe('CurrencyAmount', () => {
     })
   })
 
-  describe('#raw', () => {
-    it('returns the amount after scaling up to decimals', () => {
+  describe('#quotient', () => {
+    it('returns the amount after multiplication', () => {
       const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 18)
       const amount = CurrencyAmount.fromRawAmount(token, 100).multiply(new Percent(15, 100))
       expect(amount.quotient).toEqual(JSBI.BigInt(15))
@@ -70,6 +70,24 @@ describe('CurrencyAmount', () => {
       const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 18)
       const amount = CurrencyAmount.fromRawAmount(token, 1e15)
       expect(amount.toSignificant(9)).toEqual('0.001')
+    })
+  })
+
+  describe('#toExact', () => {
+    it('does not throw for sig figs > currency.decimals', () => {
+      const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 0)
+      const amount = CurrencyAmount.fromRawAmount(token, 1000)
+      expect(amount.toExact()).toEqual('1000')
+    })
+    it('is correct for 0 decimals', () => {
+      const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 0)
+      const amount = CurrencyAmount.fromRawAmount(token, 123456)
+      expect(amount.toExact()).toEqual('123456')
+    })
+    it('is correct for 18 decimals', () => {
+      const token = new Token(ChainId.MAINNET, ADDRESS_ONE, 18)
+      const amount = CurrencyAmount.fromRawAmount(token, 123e13)
+      expect(amount.toExact()).toEqual('0.00123')
     })
   })
 })
