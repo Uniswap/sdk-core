@@ -56,7 +56,7 @@ describe('CurrencyAmount', () => {
       JSBI.add(MaxUint256, JSBI.BigInt(2)),
       2
     )
-    expect(amount.numerator).toEqual(JSBI.add(JSBI.BigInt(1), MaxUint256))
+    expect(amount.numerator).toEqual(JSBI.add(JSBI.BigInt(2), MaxUint256))
   })
 
   describe('#toFixed', () => {
