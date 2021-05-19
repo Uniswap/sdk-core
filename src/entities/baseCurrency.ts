@@ -1,5 +1,6 @@
 import invariant from 'tiny-invariant'
 import { Currency } from './currency'
+import { Token } from './token'
 
 /**
  * A currency is any fungible financial instrument, including Ether, all ERC20 tokens, and other chain-native currencies
@@ -53,4 +54,10 @@ export abstract class BaseCurrency {
    * @param other the other currency
    */
   public abstract equals(other: Currency): boolean
+
+  /**
+   * Return the wrapped version of this currency that can be used with the Uniswap contracts. Currencies must
+   * implement this to be used in Uniswap
+   */
+  public abstract get wrapped(): Token
 }
