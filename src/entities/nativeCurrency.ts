@@ -8,8 +8,6 @@ export abstract class NativeCurrency extends BaseCurrency {
   public readonly isNative: true = true
   public readonly isToken: false = false
 
-  public abstract equals(other: Token | NativeCurrency): boolean
-
   /**
    * Return the wrapped version of this native currency that can be used with the Uniswap contracts
    */

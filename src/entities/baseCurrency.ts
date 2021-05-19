@@ -1,4 +1,5 @@
 import invariant from 'tiny-invariant'
+import { Currency } from './currency'
 
 /**
  * A currency is any fungible financial instrument, including Ether, all ERC20 tokens, and other chain-native currencies
@@ -46,4 +47,10 @@ export abstract class BaseCurrency {
     this.symbol = symbol
     this.name = name
   }
+
+  /**
+   * Returns whether this currency is functionally equivalent to the other currency
+   * @param other the other currency
+   */
+  public abstract equals(other: Currency): boolean
 }
