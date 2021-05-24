@@ -1,5 +1,5 @@
 import JSBI from 'jsbi'
-import { BigintIsh, Rounding } from '../../constants'
+import { BigintIsh, Rounding } from './constants'
 import { Fraction } from './fraction'
 
 const ONE_HUNDRED = new Fraction(JSBI.BigInt(100))
