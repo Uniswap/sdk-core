@@ -1,17 +1,19 @@
 {
-  "name": "@uniswap/sdk-core",
+  "name": "@ubeswap/token-math",
   "license": "MIT",
-  "version": "3.0.0-alpha.2",
-  "description": "⚒️ An SDK for building applications on top of Uniswap V3",
+  "version": "0.1.0",
+  "description": "⚒️ A library for token math.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/Uniswap/uniswap-sdk-core.git",
+  "repository": "https://github.com/Ubeswap/token-math.git",
   "keywords": [
     "uniswap",
-    "ethereum"
+    "ethereum",
+    "token",
+    "ubeswap"
   ],
   "module": "dist/sdk-core.esm.js",
   "scripts": {
@@ -21,7 +23,6 @@
     "prepublishOnly": "tsdx build"
   },
   "dependencies": {
-    "@ethersproject/address": "^5.0.2",
     "big.js": "^5.2.2",
     "decimal.js-light": "^2.5.0",
     "jsbi": "^3.1.4",
