@@ -2,9 +2,9 @@ import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
 import _Decimal from 'decimal.js-light'
 import _Big, { RoundingMode } from 'big.js'
-import toFormat from 'toformat'
+import toFormat, { NumberFormat } from 'toformat'
 
-import { BigintIsh, Rounding } from '../../constants'
+import { BigintIsh, Rounding } from './constants'
 
 const Decimal = toFormat(_Decimal)
 const Big = toFormat(_Big)
@@ -19,6 +19,15 @@ const toFixedRounding = {
   [Rounding.ROUND_DOWN]: RoundingMode.RoundDown,
   [Rounding.ROUND_HALF_UP]: RoundingMode.RoundHalfUp,
   [Rounding.ROUND_UP]: RoundingMode.RoundUp
+}
+
+export interface NumberFormat {
+  decimalSeparator?: string
+  groupSeparator?: string
+  groupSize?: number
+  secondaryGroupSize?: number
+  fractionGroupSeparator?: string
+  fractionGroupSize?: number
 }
 
 export class Fraction {
@@ -122,7 +131,7 @@ export class Fraction {
 
   public toSignificant(
     significantDigits: number,
-    format: object = { groupSeparator: '' },
+    format: NumberFormat = { groupSeparator: '' },
     rounding: Rounding = Rounding.ROUND_HALF_UP
   ): string {
     invariant(Number.isInteger(significantDigits), `${significantDigits} is not an integer.`)
@@ -137,7 +146,7 @@ export class Fraction {
 
   public toFixed(
     decimalPlaces: number,
-    format: object = { groupSeparator: '' },
+    format: NumberFormat = { groupSeparator: '' },
     rounding: Rounding = Rounding.ROUND_HALF_UP
   ): string {
     invariant(Number.isInteger(decimalPlaces), `${decimalPlaces} is not an integer.`)
