@@ -1,2 +1,2 @@
-export { Fraction } from './fraction'
+export { Fraction, NumberFormat } from './fraction'
 export { Percent } from './percent'
