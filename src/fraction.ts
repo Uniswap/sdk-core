@@ -2,12 +2,12 @@ import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
 import _Decimal from 'decimal.js-light'
 import _Big, { RoundingMode } from 'big.js'
-import toFormat, { NumberFormat } from 'toformat'
+import toFormat from 'toformat'
 
 import { BigintIsh, Rounding } from './constants'
 
-const Decimal = toFormat(_Decimal)
-const Big = toFormat(_Big)
+export const Decimal = toFormat(_Decimal)
+export const Big = toFormat(_Big)
 
 const toSignificantRounding = {
   [Rounding.ROUND_DOWN]: Decimal.ROUND_DOWN,
