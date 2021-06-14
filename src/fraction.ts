@@ -4,7 +4,8 @@ import _Decimal from "decimal.js-light";
 import _Big, { RoundingMode } from "big.js";
 import toFormat from "toformat";
 
-import { BigintIsh, Rounding } from "./constants";
+import { Rounding } from "./constants";
+import { BigintIsh, parseBigintIsh } from "./utils";
 
 export const Decimal = toFormat(_Decimal);
 export const Big = toFormat(_Big);
@@ -38,15 +39,16 @@ export class Fraction {
     numerator: BigintIsh,
     denominator: BigintIsh = JSBI.BigInt(1)
   ) {
-    this.numerator = JSBI.BigInt(numerator);
-    this.denominator = JSBI.BigInt(denominator);
+    this.numerator = JSBI.BigInt(parseBigintIsh(numerator));
+    this.denominator = JSBI.BigInt(parseBigintIsh(denominator));
   }
 
   private static tryParseFraction(fractionish: BigintIsh | Fraction): Fraction {
     if (
       fractionish instanceof JSBI ||
       typeof fractionish === "number" ||
-      typeof fractionish === "string"
+      typeof fractionish === "string" ||
+      typeof fractionish === "bigint"
     )
       return new Fraction(fractionish);
 
