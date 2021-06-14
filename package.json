@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@types/bn.js": "^5.1.0",
-    "big.js": "^5.2.2",
+    "big.js": "^6.1.1",
     "bn.js": "^5.2.0",
     "decimal.js-light": "^2.5.0",
     "jsbi": "^3.1.4",
@@ -32,8 +32,8 @@
     "toformat": "^2.0.0"
   },
   "devDependencies": {
-    "@types/big.js": "^4.0.5",
-    "@types/jest": "^24.0.25",
+    "@types/big.js": "^6.1.1",
+    "@types/jest": "^26.0.23",
     "tsdx": "^0.14.1"
   },
   "engines": {
