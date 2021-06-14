@@ -6,13 +6,13 @@ export const TEN = JSBI.BigInt(10);
 
 export enum TradeType {
   EXACT_INPUT,
-  EXACT_OUTPUT
+  EXACT_OUTPUT,
 }
 
 export enum Rounding {
   ROUND_DOWN,
   ROUND_HALF_UP,
-  ROUND_UP
+  ROUND_UP,
 }
 
 export const MAX_U64 = JSBI.BigInt("0xffffffffffffffff");
