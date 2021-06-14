@@ -1,13 +1,11 @@
 import Decimal from "decimal.js-light";
 import JSBI from "jsbi";
 import invariant from "tiny-invariant";
-import { Percent } from ".";
-
 import { MAX_U256, MAX_U64, Rounding, ZERO } from "./constants";
-import { Fraction, NumberFormat } from "./fraction";
+import { Big, Fraction, NumberFormat } from "./fraction";
+import { Percent } from "./percent";
 import { Token } from "./token";
 import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
-import { Big } from "./fraction";
 
 export function validateU64(value: JSBI): void {
   invariant(
