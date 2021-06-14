@@ -4,9 +4,6 @@ export const ZERO = JSBI.BigInt(0);
 export const ONE = JSBI.BigInt(1);
 export const TEN = JSBI.BigInt(10);
 
-// exports for external consumption
-export type BigintIsh = JSBI | string | number;
-
 export enum TradeType {
   EXACT_INPUT,
   EXACT_OUTPUT
