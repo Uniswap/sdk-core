@@ -1,4 +1,4 @@
-import Decimal from "decimal.js";
+import Decimal from "decimal.js-light";
 import JSBI from "jsbi";
 import invariant from "tiny-invariant";
 import { Percent } from ".";

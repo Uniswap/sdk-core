@@ -11,7 +11,7 @@ export declare type BigintIsh = JSBI | string | number | bigint | BN;
 export function parseBigintIsh(bigintIsh: BigintIsh): JSBI {
   return bigintIsh instanceof JSBI
     ? bigintIsh
-    : typeof bigintIsh === "bigint" || bigintIsh instanceof BN
+    : typeof bigintIsh === "bigint" || BN.isBN(bigintIsh)
     ? JSBI.BigInt(bigintIsh.toString())
     : JSBI.BigInt(bigintIsh);
 }
