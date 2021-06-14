@@ -20,7 +20,8 @@
     "build": "tsdx build",
     "start": "tsdx watch",
     "test": "tsdx test",
-    "prepublishOnly": "tsdx build"
+    "prepublishOnly": "tsdx build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@types/bn.js": "^5.1.0",
@@ -34,10 +35,16 @@
   "devDependencies": {
     "@types/big.js": "^6.1.1",
     "@types/jest": "^26.0.23",
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "prettier": "^2.3.1",
     "tsdx": "^0.14.1"
   },
   "engines": {
     "node": ">=10"
   },
-  "prettier": {}
+  "prettier": {},
+  "lint-staged": {
+    "*.{css,html,js,json,jsx,md,sass,scss,ts,tsx,vue,yaml,yml}": "prettier --write"
+  }
 }
