@@ -85,8 +85,7 @@ export class TokenAmount<T extends Token> extends Fraction {
       JSBI.BigInt(
         new Decimal(uiAmount)
           .times(new Decimal(10).pow(token.decimals))
-          .floor()
-          .toString()
+          .toFixed(0)
       )
     );
   }
