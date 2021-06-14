@@ -1,7 +1,11 @@
-import JSBI from 'jsbi'
+import JSBI from "jsbi";
+
+export const ZERO = JSBI.BigInt(0);
+export const ONE = JSBI.BigInt(1);
+export const TEN = JSBI.BigInt(10);
 
 // exports for external consumption
-export type BigintIsh = JSBI | string | number
+export type BigintIsh = JSBI | string | number;
 
 export enum TradeType {
   EXACT_INPUT,
@@ -14,4 +18,7 @@ export enum Rounding {
   ROUND_UP
 }
 
-export const MaxUint256 = JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+export const MAX_U64 = JSBI.BigInt("0xffffffffffffffff");
+export const MAX_U256 = JSBI.BigInt(
+  "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+);
