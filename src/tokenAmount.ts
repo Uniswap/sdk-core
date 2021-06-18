@@ -52,7 +52,7 @@ const stripTrailingZeroes = (num: string): string => {
   return `${head}.${tail.replace(/\.0+$/, "")}`;
 };
 
-export class TokenAmount<T extends Token> extends Fraction {
+export class TokenAmount<T extends Token<T>> extends Fraction {
   public readonly token: T;
 
   // amount _must_ be raw, i.e. in the native representation
@@ -74,7 +74,7 @@ export class TokenAmount<T extends Token> extends Fraction {
    * @param uiAmount
    * @returns
    */
-  public static parse<Tk extends Token>(
+  public static parse<Tk extends Token<Tk>>(
     token: Tk,
     uiAmount: string
   ): TokenAmount<Tk> {

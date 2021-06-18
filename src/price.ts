@@ -6,7 +6,7 @@ import { Token } from "./token";
 import { TokenAmount } from "./tokenAmount";
 import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
 
-export class Price<T extends Token> extends Fraction {
+export class Price<T extends Token<T>> extends Fraction {
   public readonly baseCurrency: T; // input i.e. denominator
   public readonly quoteCurrency: T; // output i.e. numerator
   public readonly scalar: Fraction; // used to adjust the raw fraction w/r/t the decimals of the {base,quote}Token

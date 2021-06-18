@@ -1,7 +1,7 @@
 /**
  * Standard interface for a token.
  */
-export interface Token {
+export interface Token<T extends Token<T>> {
   decimals: number;
-  equals: (other: Token) => boolean;
+  equals: (other: T) => boolean;
 }
