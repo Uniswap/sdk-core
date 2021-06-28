@@ -11,10 +11,6 @@ on:
 jobs:
   tests:
     name: Unit tests
-    strategy:
-      matrix:
-        node: ["10.x", "12.x", "14.x"]
-
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +20,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 14
 
       - name: Get cache directory
         id: yarn-cache

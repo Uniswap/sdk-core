@@ -1,23 +1,25 @@
 {
-  "include": ["src"],
+  "include": ["src/"],
   "compilerOptions": {
-    "target": "es2018",
-    "module": "esnext",
-    "importHelpers": true,
-    "declaration": true,
-    "sourceMap": true,
+    "target": "ES2015",
+    "module": "commonjs",
     "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
     "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
+    "noImplicitOverride": true,
+    "esModuleInterop": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "lib": ["ES2019"],
+
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true
+    "outDir": "dist/"
   }
 }

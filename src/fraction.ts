@@ -1,19 +1,22 @@
+import _Big, { RoundingMode } from "big.js";
+import _Decimal from "decimal.js-light";
 import JSBI from "jsbi";
 import invariant from "tiny-invariant";
-import _Decimal from "decimal.js-light";
-import _Big, { RoundingMode } from "big.js";
 import toFormat from "toformat";
 
 import { Rounding } from "./constants";
 import { BigintIsh, parseBigintIsh } from "./utils";
 
-export const Decimal = toFormat(_Decimal);
-export const Big = toFormat(_Big);
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const Decimal: typeof _Decimal = toFormat(_Decimal);
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const Big: typeof _Big = toFormat(_Big);
 
 const toSignificantRounding = {
-  [Rounding.ROUND_DOWN]: Decimal.ROUND_DOWN,
-  [Rounding.ROUND_HALF_UP]: Decimal.ROUND_HALF_UP,
-  [Rounding.ROUND_UP]: Decimal.ROUND_UP,
+  [Rounding.ROUND_DOWN]: _Decimal.ROUND_DOWN,
+  [Rounding.ROUND_HALF_UP]: _Decimal.ROUND_HALF_UP,
+  [Rounding.ROUND_UP]: _Decimal.ROUND_UP,
 };
 
 const toFixedRounding = {
@@ -166,7 +169,12 @@ export class Fraction {
     const quotient = new Decimal(this.numerator.toString())
       .div(this.denominator.toString())
       .toSignificantDigits(significantDigits);
-    return quotient.toFormat(quotient.decimalPlaces(), format);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
+    return (
+      quotient as unknown as {
+        toFormat: (dec: number, format: NumberFormat) => string;
+      }
+    ).toFormat(quotient.decimalPlaces(), format);
   }
 
   public toFixed(
@@ -182,9 +190,13 @@ export class Fraction {
 
     Big.DP = decimalPlaces;
     Big.RM = toFixedRounding[rounding];
-    return new Big(this.numerator.toString())
-      .div(this.denominator.toString())
-      .toFormat(decimalPlaces, format);
+    return (
+      new Big(this.numerator.toString()).div(
+        this.denominator.toString()
+      ) as unknown as {
+        toFormat: (dec: number, format: NumberFormat) => string;
+      }
+    ).toFormat(decimalPlaces, format);
   }
 
   /**

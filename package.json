@@ -6,7 +6,8 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist"
+    "src/",
+    "dist/"
   ],
   "repository": "https://github.com/Ubeswap/token-math.git",
   "keywords": [
@@ -15,12 +16,12 @@
     "token",
     "ubeswap"
   ],
-  "module": "dist/token-math.esm.js",
+  "module": "dist/index.js",
   "scripts": {
-    "build": "tsdx build",
-    "start": "tsdx watch",
-    "test": "tsdx test",
-    "prepublishOnly": "tsdx build",
+    "build": "tsc",
+    "lint": "eslint .",
+    "test": "jest",
+    "prepublishOnly": "tsc",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -35,15 +36,25 @@
   "devDependencies": {
     "@types/big.js": "^6.1.1",
     "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^1.1.1",
     "husky": ">=6",
+    "jest": "^27.0.5",
     "lint-staged": ">=10",
     "prettier": "^2.3.1",
-    "tsdx": "^0.14.1"
+    "ts-jest": "^27.0.3",
+    "tsdx": "^0.14.1",
+    "typescript": "^4.3.4"
   },
   "engines": {
     "node": ">=10"
   },
-  "prettier": {},
   "lint-staged": {
     "*.{css,html,js,json,jsx,md,sass,scss,ts,tsx,vue,yaml,yml}": "prettier --write"
   }

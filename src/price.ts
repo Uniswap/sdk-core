@@ -1,8 +1,8 @@
 import invariant from "tiny-invariant";
+
 import { Rounding } from "./constants";
 import { Fraction, NumberFormat } from "./fraction";
 import { Token } from "./token";
-
 import { TokenAmount } from "./tokenAmount";
 import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
 
@@ -36,7 +36,7 @@ export class Price<T extends Token<T>> extends Fraction {
     return super.multiply(this.scalar);
   }
 
-  public invert(): Price<T> {
+  public override invert(): Price<T> {
     return new Price(
       this.quoteCurrency,
       this.baseCurrency,
@@ -45,8 +45,11 @@ export class Price<T extends Token<T>> extends Fraction {
     );
   }
 
-  public multiply(other: Price<T>): Price<T> {
-    invariant(this.quoteCurrency.equals(other.baseCurrency), "TOKEN");
+  public override multiply(other: Price<T>): Price<T> {
+    invariant(
+      this.quoteCurrency.equals(other.baseCurrency),
+      `multiply token mismatch: ${this.quoteCurrency.toString()} !== ${other.baseCurrency.toString()}`
+    );
     const fraction = super.multiply(other);
     return new Price(
       this.baseCurrency,
@@ -58,14 +61,17 @@ export class Price<T extends Token<T>> extends Fraction {
 
   // performs floor division on overflow
   public quote(tokenAmount: TokenAmount<T>): TokenAmount<T> {
-    invariant(tokenAmount.token.equals(this.baseCurrency), "TOKEN");
+    invariant(
+      tokenAmount.token.equals(this.baseCurrency),
+      `quote token mismatch: ${tokenAmount.token.toString()} !== ${this.baseCurrency.toString()}`
+    );
     return new TokenAmount(
       this.quoteCurrency,
       super.multiply(tokenAmount.raw).quotient
     );
   }
 
-  public toSignificant(
+  public override toSignificant(
     significantDigits = 6,
     format?: NumberFormat,
     rounding?: Rounding
@@ -73,7 +79,7 @@ export class Price<T extends Token<T>> extends Fraction {
     return this.adjusted.toSignificant(significantDigits, format, rounding);
   }
 
-  public toFixed(
+  public override toFixed(
     decimalPlaces = 4,
     format?: NumberFormat,
     rounding?: Rounding

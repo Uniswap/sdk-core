@@ -1,4 +1,5 @@
 import JSBI from "jsbi";
+
 import { Rounding } from "./constants";
 import { Fraction, NumberFormat } from "./fraction";
 import { BigintIsh } from "./utils";
@@ -19,24 +20,24 @@ export class Percent extends Fraction {
    */
   public readonly isPercent: true = true;
 
-  add(other: Fraction | BigintIsh): Percent {
+  public override add(other: Fraction | BigintIsh): Percent {
     return toPercent(super.add(other));
   }
 
-  subtract(other: Fraction | BigintIsh): Percent {
+  public override subtract(other: Fraction | BigintIsh): Percent {
     return toPercent(super.subtract(other));
   }
 
-  multiply(other: Fraction | BigintIsh): Percent {
+  public override multiply(other: Fraction | BigintIsh): Percent {
     return toPercent(super.multiply(other));
   }
 
-  divide(other: Fraction | BigintIsh): Percent {
+  public override divide(other: Fraction | BigintIsh): Percent {
     return toPercent(super.divide(other));
   }
 
-  public toSignificant(
-    significantDigits: number = 5,
+  public override toSignificant(
+    significantDigits = 5,
     format?: NumberFormat,
     rounding?: Rounding
   ): string {
@@ -45,8 +46,8 @@ export class Percent extends Fraction {
       .toSignificant(significantDigits, format, rounding);
   }
 
-  public toFixed(
-    decimalPlaces: number = 2,
+  public override toFixed(
+    decimalPlaces = 2,
     format?: NumberFormat,
     rounding?: Rounding
   ): string {

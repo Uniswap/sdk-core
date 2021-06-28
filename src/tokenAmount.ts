@@ -1,7 +1,9 @@
+import { BigSource } from "big.js";
 import Decimal from "decimal.js-light";
 import JSBI from "jsbi";
 import invariant from "tiny-invariant";
-import { MAX_U256, MAX_U64, Rounding, ZERO } from "./constants";
+
+import { MAX_U64, MAX_U256, Rounding, ZERO } from "./constants";
 import { Big, Fraction, NumberFormat } from "./fraction";
 import { Percent } from "./percent";
 import { Token } from "./token";
@@ -74,7 +76,7 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
    * @param uiAmount
    * @returns
    */
-  public static parse<Tk extends Token<Tk>>(
+  public static parseFromString<Tk extends Token<Tk>>(
     token: Tk,
     uiAmount: string
   ): TokenAmount<Tk> {
@@ -92,7 +94,7 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
     return this.numerator;
   }
 
-  public toSignificant(
+  public override toSignificant(
     significantDigits = 6,
     format?: NumberFormat,
     rounding: Rounding = Rounding.ROUND_DOWN
@@ -100,7 +102,7 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
     return super.toSignificant(significantDigits, format, rounding);
   }
 
-  public toFixed(
+  public override toFixed(
     decimalPlaces: number = this.token.decimals,
     format?: NumberFormat,
     rounding: Rounding = Rounding.ROUND_DOWN
@@ -113,18 +115,28 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     Big.DP = this.token.decimals;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-    return new Big(this.numerator)
-      .div(this.denominator.toString())
-      .toFormat(format);
+    return (
+      new Big(this.numerator as unknown as BigSource).div(
+        this.denominator.toString()
+      ) as unknown as {
+        toFormat: (format: NumberFormat) => string;
+      }
+    ).toFormat(format);
   }
 
-  public add(other: TokenAmount<T>): TokenAmount<T> {
-    invariant(this.token.equals(other.token), "TOKEN");
+  public override add(other: TokenAmount<T>): TokenAmount<T> {
+    invariant(
+      this.token.equals(other.token),
+      `add token mismatch: ${this.token.toString()} !== ${other.token.toString()}`
+    );
     return new TokenAmount(this.token, JSBI.add(this.raw, other.raw));
   }
 
-  public subtract(other: TokenAmount<T>): TokenAmount<T> {
-    invariant(this.token.equals(other.token), "TOKEN");
+  public override subtract(other: TokenAmount<T>): TokenAmount<T> {
+    invariant(
+      this.token.equals(other.token),
+      `subtract token mismatch: ${this.token.toString()} !== ${other.token.toString()}`
+    );
     return new TokenAmount(this.token, JSBI.subtract(this.raw, other.raw));
   }
 
@@ -134,7 +146,10 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
    * @returns
    */
   public divideByAmount(other: TokenAmount<T>): Percent {
-    invariant(this.token.equals(other.token), "TOKEN");
+    invariant(
+      this.token.equals(other.token),
+      `divideByAmount token mismatch: ${this.token.toString()} !== ${other.token.toString()}`
+    );
     const frac = this.divide(other);
     return new Percent(frac.numerator, frac.denominator);
   }
