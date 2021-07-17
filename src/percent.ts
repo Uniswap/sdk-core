@@ -20,6 +20,17 @@ export class Percent extends Fraction {
    */
   public readonly isPercent: true = true;
 
+  /**
+   * Parses a {@link Percent} from a float.
+   * @param number Number to parse. (100% is 1.00)
+   * @param decimals Number of decimals of precision. (default 10)
+   * @returns Percent
+   */
+  public static override fromNumber(number: number, decimals = 10): Percent {
+    const frac = Fraction.fromNumber(number, decimals);
+    return new Percent(frac.numerator, frac.denominator);
+  }
+
   public override add(other: Fraction | BigintIsh): Percent {
     return toPercent(super.add(other));
   }

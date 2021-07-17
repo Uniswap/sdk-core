@@ -46,6 +46,17 @@ export class Fraction {
     this.denominator = JSBI.BigInt(parseBigintIsh(denominator));
   }
 
+  /**
+   * Parses a {@link Fraction} from a float.
+   * @param number Number to parse.
+   * @param decimals Number of decimals of precision. (default 10)
+   * @returns Fraction
+   */
+  public static fromNumber(number: number, decimals = 10): Fraction {
+    const multiplier = Math.pow(10, decimals);
+    return new Fraction(Math.floor(number * multiplier), multiplier);
+  }
+
   private static tryParseFraction(fractionish: BigintIsh | Fraction): Fraction {
     if (
       fractionish instanceof JSBI ||

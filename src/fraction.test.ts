@@ -174,4 +174,22 @@ describe("Fraction", () => {
       expect(f === f.asFraction).toEqual(false);
     });
   });
+
+  describe("#fromNumber", () => {
+    it("returns a fraction", () => {
+      const num = 10.0;
+      const frac = Fraction.fromNumber(num);
+      const expected = new Fraction(
+        JSBI.BigInt(10_0000000000),
+        JSBI.BigInt(1_0000000000)
+      );
+      expect(frac).toEqual(expected);
+    });
+    it("rounds down if precision not supported", () => {
+      const num = 10.001;
+      const frac = Fraction.fromNumber(num, 2);
+      const expected = new Fraction(JSBI.BigInt(10_00), JSBI.BigInt(1_00));
+      expect(frac).toEqual(expected);
+    });
+  });
 });
