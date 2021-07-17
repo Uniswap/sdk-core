@@ -18,10 +18,12 @@
   ],
   "module": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "rm -r dist/",
+    "typecheck": "tsc",
     "lint": "eslint .",
     "test": "jest",
-    "prepublishOnly": "tsc",
+    "prepublishOnly": "npm run clean && npm run build",
     "prepare": "husky install"
   },
   "dependencies": {
