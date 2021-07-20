@@ -64,4 +64,17 @@ export class Percent extends Fraction {
   ): string {
     return super.multiply(ONE_HUNDRED).toFixed(decimalPlaces, format, rounding);
   }
+
+  /**
+   * Returns true if the other object is a {@link Percent}.
+   *
+   * @param other
+   * @returns
+   */
+  public static isPercent(other: unknown): other is Percent {
+    return (
+      Fraction.isFraction(other) &&
+      (other as unknown as Record<string, unknown>)?.isPercent === true
+    );
+  }
 }

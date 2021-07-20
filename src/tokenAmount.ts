@@ -201,4 +201,19 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
         : stripTrailingZeroes(asExactString)
     }`;
   }
+
+  /**
+   * Returns true if the other object is a {@link TokenAmount}.
+   *
+   * @param other
+   * @returns
+   */
+  public static isTokenAmount<T extends Token<T>, A extends TokenAmount<T>>(
+    other: unknown
+  ): other is A {
+    return (
+      Fraction.isFraction(other) &&
+      !!(other as unknown as Record<string, unknown>)?.token
+    );
+  }
 }

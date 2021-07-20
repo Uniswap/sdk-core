@@ -47,6 +47,21 @@ export class Fraction {
   }
 
   /**
+   * Returns true if the other object is a {@link Fraction}.
+   *
+   * @param other
+   * @returns
+   */
+  public static isFraction(other: unknown): other is Fraction {
+    return (
+      typeof other === "object" &&
+      other !== null &&
+      "numerator" in other &&
+      "denominator" in other
+    );
+  }
+
+  /**
    * Parses a {@link Fraction} from a float.
    * @param number Number to parse.
    * @param decimals Number of decimals of precision. (default 10)
