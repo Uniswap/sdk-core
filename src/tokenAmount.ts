@@ -9,26 +9,34 @@ import { Percent } from "./percent";
 import { Token } from "./token";
 import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
 
+export class TokenAmountOverflow extends RangeError {
+  constructor(type: string, amount: JSBI) {
+    super(`Token amount overflows ${type}: ${amount.toString()}`);
+  }
+}
+
+export class TokenAmountUnderflow extends RangeError {
+  constructor(amount: JSBI) {
+    super(`Token amount must be greater than zero: ${amount.toString()}`);
+  }
+}
+
 export function validateU64(value: JSBI): void {
-  invariant(
-    JSBI.greaterThanOrEqual(value, ZERO),
-    `${value.toString()} must be greater than zero`
-  );
-  invariant(
-    JSBI.lessThanOrEqual(value, MAX_U64),
-    `${value.toString()} overflows u64`
-  );
+  if (!JSBI.greaterThanOrEqual(value, ZERO)) {
+    throw new TokenAmountUnderflow(value);
+  }
+  if (!JSBI.lessThanOrEqual(value, MAX_U64)) {
+    throw new TokenAmountOverflow("u64", value);
+  }
 }
 
 export function validateU256(value: JSBI): void {
-  invariant(
-    JSBI.greaterThanOrEqual(value, ZERO),
-    `${value.toString()} must be greater than zero`
-  );
-  invariant(
-    JSBI.lessThanOrEqual(value, MAX_U256),
-    `${value.toString()} overflows u64`
-  );
+  if (!JSBI.greaterThanOrEqual(value, ZERO)) {
+    throw new TokenAmountUnderflow(value);
+  }
+  if (!JSBI.lessThanOrEqual(value, MAX_U256)) {
+    throw new TokenAmountOverflow("u256", value);
+  }
 }
 
 export interface IFormatUint {

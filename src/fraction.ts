@@ -34,9 +34,20 @@ export interface NumberFormat {
   fractionGroupSize?: number;
 }
 
+/**
+ * Number with an integer numerator and denominator.
+ */
 export class Fraction {
+  /**
+   * This boolean checks to see if this is actually a {@link Fraction}.
+   */
+  public readonly isFraction: true = true;
+
   public readonly numerator: JSBI;
   public readonly denominator: JSBI;
+
+  public static readonly ZERO: Fraction = new Fraction(0);
+  public static readonly ONE: Fraction = new Fraction(0);
 
   public constructor(
     numerator: BigintIsh,

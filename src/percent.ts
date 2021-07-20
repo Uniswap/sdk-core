@@ -20,6 +20,18 @@ export class Percent extends Fraction {
    */
   public readonly isPercent: true = true;
 
+  public static override readonly ZERO: Percent = new Percent(0);
+
+  /**
+   * 1%
+   */
+  public static override readonly ONE: Percent = new Percent(1, 100);
+
+  /**
+   * 100% (1/1)
+   */
+  public static readonly ONE_HUNDRED: Percent = new Percent(1);
+
   /**
    * Parses a {@link Percent} from a float.
    * @param number Number to parse. (100% is 1.00)
@@ -29,6 +41,14 @@ export class Percent extends Fraction {
   public static override fromNumber(number: number, decimals = 10): Percent {
     const frac = Fraction.fromNumber(number, decimals);
     return new Percent(frac.numerator, frac.denominator);
+  }
+
+  /**
+   * Parses a {@link Percent} from a given number of bps.
+   * @returns Percent
+   */
+  public static fromBPS(bps: BigintIsh): Percent {
+    return new Percent(bps, 10_000);
   }
 
   public override add(other: Fraction | BigintIsh): Percent {
