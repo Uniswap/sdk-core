@@ -72,18 +72,24 @@ export class Fraction {
     return new Fraction(Math.floor(number * multiplier), multiplier);
   }
 
+  /**
+   * Attempts to parse a {@link Fraction}.
+   * @param fractionish Fraction or BigintIsh.
+   * @returns
+   */
   private static tryParseFraction(fractionish: BigintIsh | Fraction): Fraction {
-    if (
-      fractionish instanceof JSBI ||
-      typeof fractionish === "number" ||
-      typeof fractionish === "string" ||
-      typeof fractionish === "bigint"
-    )
-      return new Fraction(fractionish);
-
-    if ("numerator" in fractionish && "denominator" in fractionish)
+    if (Fraction.isFraction(fractionish)) {
       return fractionish;
-    throw new Error("Could not parse fraction");
+    }
+
+    try {
+      return new Fraction(parseBigintIsh(fractionish));
+    } catch (e) {
+      if (e instanceof Error) {
+        throw new Error(`Could not parse fraction: ${e.message}`);
+      }
+      throw new Error(`Could not parse fraction`);
+    }
   }
 
   // performs floor division
