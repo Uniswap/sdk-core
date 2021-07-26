@@ -2,15 +2,43 @@ import { Ether } from './ether'
 
 describe('Ether', () => {
   it('static constructor uses cache', () => {
-    expect(Ether.onChain(1) === Ether.onChain(1)).toEqual(true)
+    expect(
+      Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2') ===
+        Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2')
+    ).toEqual(true)
   })
   it('caches once per chain ID', () => {
-    expect(Ether.onChain(1) !== Ether.onChain(2)).toEqual(true)
+    expect(
+      Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2') !==
+        Ether.onChain(2, '0xc778417e063141139fce010982780140aa0cd5ab')
+    ).toEqual(true)
   })
   it('#equals returns false for diff chains', () => {
-    expect(Ether.onChain(1).equals(Ether.onChain(2))).toEqual(false)
+    expect(
+      Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2').equals(
+        Ether.onChain(2, '0xc778417e063141139fce010982780140aa0cd5ab')
+      )
+    ).toEqual(false)
   })
   it('#equals returns true for same chains', () => {
-    expect(Ether.onChain(1).equals(Ether.onChain(1))).toEqual(true)
+    expect(
+      Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2').equals(
+        Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2')
+      )
+    ).toEqual(true)
+  })
+  it('#equals returns true for different addresses on the same chain', () => {
+    expect(
+      Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2').equals(
+        Ether.onChain(1, '0xc778417e063141139fce010982780140aa0cd5ab')
+      )
+    ).toEqual(true)
+  })
+  it('#equals returns false for same addresses on different chain', () => {
+    expect(
+      Ether.onChain(1, '0xc778417e063141139fce010982780140aa0cd5ab').equals(
+        Ether.onChain(2, '0xc778417e063141139fce010982780140aa0cd5ab')
+      )
+    ).toEqual(false)
   })
 })

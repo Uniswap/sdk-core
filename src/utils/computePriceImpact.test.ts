@@ -11,8 +11,8 @@ describe('#computePriceImpact', () => {
   it('is correct for zero', () => {
     expect(
       computePriceImpact(
-        new Price(Ether.onChain(1), t0, 10, 100),
-        CurrencyAmount.fromRawAmount(Ether.onChain(1), 10),
+        new Price(Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'), t0, 10, 100),
+        CurrencyAmount.fromRawAmount(Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'), 10),
         CurrencyAmount.fromRawAmount(t0, 100)
       )
     ).toEqual(new Percent(0, 10000))

@@ -9,10 +9,14 @@ describe('Currency', () => {
 
   describe('#equals', () => {
     it('ether on same chains is ether', () => {
-      expect(Ether.onChain(1).equals(Ether.onChain(1)))
+      expect(
+        Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2').equals(
+          Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2')
+        )
+      ).toBe(true)
     })
     it('ether is not token0', () => {
-      expect(Ether.onChain(1).equals(t0)).toStrictEqual(false)
+      expect(Ether.onChain(1, '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2').equals(t0)).toStrictEqual(false)
     })
     it('token1 is not token0', () => {
       expect(t1.equals(t0)).toStrictEqual(false)
