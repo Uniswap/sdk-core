@@ -1,4 +1,3 @@
-import invariant from 'tiny-invariant'
 import { Currency } from './currency'
 import { NativeCurrency } from './nativeCurrency'
 import { Token } from './token'
@@ -7,23 +6,25 @@ import { Token } from './token'
  * Ether is the main usage of a 'native' currency, i.e. for Ethereum mainnet and all testnets
  */
 export class Ether extends NativeCurrency {
-  private _address: string
+  private _wrappedEtherAddress: string
+  private _wrappedEther: Token | undefined
 
   protected constructor(chainId: number, address: string) {
     super(chainId, 18, 'ETH', 'Ether')
-    this._address = address
+    this._wrappedEtherAddress = address
   }
 
   public get wrapped(): Token {
-    const weth9 = new Token(this.chainId, this._address, 18, 'WETH', 'Wrapped Ether')
-    invariant(!!weth9, 'WRAPPED')
-    return weth9
+    if (this._wrappedEther) {
+      return this._wrappedEther
+    }
+
+    this._wrappedEther = new Token(this.chainId, this._wrappedEtherAddress, 18, 'WETH', 'Wrapped Ether')
+    return this._wrappedEther
   }
 
-  private static _etherCache: { [chainId: number]: Ether } = {}
-
   public static onChain(chainId: number, address: string): Ether {
-    return this._etherCache[chainId] ?? (this._etherCache[chainId] = new Ether(chainId, address))
+    return new Ether(chainId, address)
   }
 
   public equals(other: Currency): boolean {
