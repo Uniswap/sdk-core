@@ -140,7 +140,6 @@ describe('Fraction', () => {
       ).toBe(true)
     })
   })
-
   describe('#multiplty', () => {
     it('correct', () => {
       expect(
