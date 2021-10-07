@@ -52,6 +52,16 @@ export class Fraction {
     return new Fraction(this.denominator, this.numerator)
   }
 
+  public absoluteValue(): Fraction {
+    const numeratorAbs = JSBI.lessThan(this.numerator, JSBI.BigInt(0))
+      ? JSBI.unaryMinus(this.numerator)
+      : this.numerator
+    const denominatorAbs = JSBI.lessThan(this.denominator, JSBI.BigInt(0))
+      ? JSBI.unaryMinus(this.denominator)
+      : this.denominator
+    return new Fraction(numeratorAbs, denominatorAbs)
+  }
+
   public add(other: Fraction | BigintIsh): Fraction {
     const otherParsed = Fraction.tryParseFraction(other)
     if (JSBI.equal(this.denominator, otherParsed.denominator)) {
@@ -102,6 +112,14 @@ export class Fraction {
       JSBI.multiply(this.numerator, otherParsed.denominator),
       JSBI.multiply(otherParsed.numerator, this.denominator)
     )
+  }
+
+  public lessThanOrEqualTo(other: Fraction | BigintIsh): boolean {
+    return this.lessThan(other) || this.equalTo(other)
+  }
+
+  public greaterThanOrEqualTo(other: Fraction | BigintIsh): boolean {
+    return this.greaterThan(other) || this.equalTo(other)
   }
 
   public multiply(other: Fraction | BigintIsh): Fraction {

@@ -28,6 +28,24 @@ describe('Fraction', () => {
       expect(new Fraction(JSBI.BigInt(5), JSBI.BigInt(10)).invert().denominator).toEqual(JSBI.BigInt(5))
     })
   })
+  describe('#absoluteValue', () => {
+    it('returns the absolute value of fraction with negative denominator', () => {
+      expect(new Fraction(JSBI.BigInt(5), JSBI.BigInt(-10)).absoluteValue().denominator).toEqual(JSBI.BigInt(10))
+    })
+    it('returns the absolute value of fraction with negative numerator', () => {
+      expect(new Fraction(JSBI.BigInt(-5), JSBI.BigInt(10)).absoluteValue().numerator).toEqual(JSBI.BigInt(5))
+    })
+    it('returns the absolute value of fraction with negative numerator and denominator', () => {
+      const absFraction = new Fraction(JSBI.BigInt(-5), JSBI.BigInt(-10)).absoluteValue()
+      expect(absFraction.numerator).toEqual(JSBI.BigInt(5))
+      expect(absFraction.denominator).toEqual(JSBI.BigInt(10))
+    })
+    it('returns the absolute value of a positive fraction', () => {
+      const absFraction = new Fraction(JSBI.BigInt(5), JSBI.BigInt(10)).absoluteValue()
+      expect(absFraction.numerator).toEqual(JSBI.BigInt(5))
+      expect(absFraction.denominator).toEqual(JSBI.BigInt(10))
+    })
+  })
   describe('#add', () => {
     it('multiples denoms and adds nums', () => {
       expect(new Fraction(JSBI.BigInt(1), JSBI.BigInt(10)).add(new Fraction(JSBI.BigInt(4), JSBI.BigInt(12)))).toEqual(
@@ -92,6 +110,37 @@ describe('Fraction', () => {
       ).toBe(true)
     })
   })
+  describe('#lessThanOrEqualTo', () => {
+    it('correct', () => {
+      expect(
+        new Fraction(JSBI.BigInt(1), JSBI.BigInt(10)).lessThanOrEqualTo(new Fraction(JSBI.BigInt(4), JSBI.BigInt(12)))
+      ).toBe(true)
+      expect(
+        new Fraction(JSBI.BigInt(1), JSBI.BigInt(3)).lessThanOrEqualTo(new Fraction(JSBI.BigInt(4), JSBI.BigInt(12)))
+      ).toBe(true)
+      expect(
+        new Fraction(JSBI.BigInt(5), JSBI.BigInt(12)).lessThanOrEqualTo(new Fraction(JSBI.BigInt(4), JSBI.BigInt(12)))
+      ).toBe(false)
+    })
+  })
+  describe('#greaterThanOrEqualTo', () => {
+    it('correct', () => {
+      expect(
+        new Fraction(JSBI.BigInt(1), JSBI.BigInt(10)).greaterThanOrEqualTo(
+          new Fraction(JSBI.BigInt(4), JSBI.BigInt(12))
+        )
+      ).toBe(false)
+      expect(
+        new Fraction(JSBI.BigInt(1), JSBI.BigInt(3)).greaterThanOrEqualTo(new Fraction(JSBI.BigInt(4), JSBI.BigInt(12)))
+      ).toBe(true)
+      expect(
+        new Fraction(JSBI.BigInt(5), JSBI.BigInt(12)).greaterThanOrEqualTo(
+          new Fraction(JSBI.BigInt(4), JSBI.BigInt(12))
+        )
+      ).toBe(true)
+    })
+  })
+
   describe('#multiplty', () => {
     it('correct', () => {
       expect(
