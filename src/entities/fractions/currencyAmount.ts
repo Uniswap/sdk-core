@@ -74,6 +74,21 @@ export class CurrencyAmount<T extends Currency> extends Fraction {
     return super.divide(this.decimalScale).toSignificant(significantDigits, format, rounding)
   }
 
+  public lessThan(other: CurrencyAmount<T>): boolean {
+    invariant(this.currency.equals(other.currency), 'CURRENCY')
+    return super.lessThan(other)
+  }
+
+  public greaterThan(other: CurrencyAmount<T>): boolean {
+    invariant(this.currency.equals(other.currency), 'CURRENCY')
+    return super.greaterThan(other)
+  }
+
+  public equalTo(other: CurrencyAmount<T>): boolean {
+    invariant(this.currency.equals(other.currency), 'CURRENCY')
+    return super.equalTo(other)
+  }
+
   public toFixed(
     decimalPlaces: number = this.currency.decimals,
     format?: object,

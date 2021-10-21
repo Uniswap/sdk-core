@@ -7,6 +7,7 @@ import { Percent } from './percent'
 
 describe('CurrencyAmount', () => {
   const ADDRESS_ONE = '0x0000000000000000000000000000000000000001'
+  const ADDRESS_TWO = '0x0000000000000000000000000000000000000011'
 
   describe('constructor', () => {
     it('works', () => {
@@ -29,6 +30,72 @@ describe('CurrencyAmount', () => {
       const amount = CurrencyAmount.fromRawAmount(Ether.onChain(1), 100)
       expect(amount.quotient).toEqual(JSBI.BigInt(100))
       expect(amount.currency).toEqual(Ether.onChain(1))
+    })
+  })
+
+  describe('#equals', () => {
+    it('works', () => {
+      expect(
+        CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1).equalTo(
+          CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1)
+        )
+      ).toBeTruthy()
+      expect(
+        CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1).equalTo(
+          CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 2)
+        )
+      ).toBeFalsy()
+    })
+    it('throws if currencies are different', () => {
+      expect(() =>
+        CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1).equalTo(
+          CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_TWO, 6), 1)
+        )
+      ).toThrow('CURRENCY')
+    })
+  })
+
+  describe('#greaterThan', () => {
+    it('works', () => {
+      expect(
+        CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 2).greaterThan(
+          CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1)
+        )
+      ).toBeTruthy()
+      expect(
+        CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1).greaterThan(
+          CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 2)
+        )
+      ).toBeFalsy()
+    })
+    it('throws if currencies are different', () => {
+      expect(() =>
+        CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1).greaterThan(
+          CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_TWO, 6), 1)
+        )
+      ).toThrow('CURRENCY')
+    })
+  })
+
+  describe('#lessThan', () => {
+    it('works', () => {
+      expect(
+        CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1).lessThan(
+          CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 2)
+        )
+      ).toBeTruthy()
+      expect(
+        CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 2).lessThan(
+          CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1)
+        )
+      ).toBeFalsy()
+    })
+    it('throws if currencies are different', () => {
+      expect(() =>
+        CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_ONE, 18), 1).lessThan(
+          CurrencyAmount.fromRawAmount(new Token(1, ADDRESS_TWO, 6), 1)
+        )
+      ).toThrow('CURRENCY')
     })
   })
 
