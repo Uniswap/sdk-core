@@ -248,4 +248,11 @@ export class Fraction {
   public get asFraction(): Fraction {
     return new Fraction(this.numerator, this.denominator);
   }
+
+  /**
+   * Gets the value of this {@link Fraction} as a number.
+   */
+  get asNumber(): number {
+    return parseFloat(this.toFixed(10));
+  }
 }
