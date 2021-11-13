@@ -1,10 +1,11 @@
 {
   "name": "@ubeswap/token-math",
+  "author": "Ian Macalinao <ian@ubeswap.org>",
   "license": "MIT",
   "version": "4.2.0",
   "description": "⚒️ A library for token math.",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "files": [
     "src/",
     "dist/"
@@ -16,9 +17,8 @@
     "token",
     "ubeswap"
   ],
-  "module": "dist/index.js",
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
+    "build": "tsc -P tsconfig.build.json && tsc -P tsconfig.esm.json",
     "clean": "rm -r dist/",
     "typecheck": "tsc",
     "lint": "eslint .",
@@ -27,11 +27,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@types/bn.js": "^5.1.0",
     "big.js": "^6.1.1",
     "decimal.js-light": "^2.5.0",
     "tiny-invariant": "^1.1.0",
-    "toformat": "^2.0.0"
+    "toformat": "^2.0.0",
+    "tslib": "^2.3.1"
   },
   "peerDependencies": {
     "bn.js": "^5.2.0",
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@types/big.js": "^6.1.2",
+    "@types/bn.js": "^5.1.0",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",

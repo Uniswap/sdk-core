@@ -2,21 +2,22 @@
   "include": ["src/"],
   "compilerOptions": {
     "target": "ES2015",
-    "module": "commonjs",
+    "module": "CommonJS",
+    "lib": ["ES2015"],
+
     "strict": true,
-    "strictFunctionTypes": true,
     "noImplicitOverride": true,
-    "esModuleInterop": true,
     "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "lib": ["ES2019"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noEmit": true,
-    "outDir": "dist/"
+
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "noEmit": true
   }
 }

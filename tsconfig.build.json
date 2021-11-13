@@ -3,6 +3,7 @@
   "include": ["src/"],
   "exclude": ["**/*.test.ts"],
   "compilerOptions": {
+    "outDir": "dist/cjs/",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
