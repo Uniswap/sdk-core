@@ -211,6 +211,13 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
   }
 
   /**
+   * Gets the value of this {@link TokenAmount} as a number.
+   */
+  override get asNumber(): number {
+    return parseFloat(this.toExact());
+  }
+
+  /**
    * Returns true if the other object is a {@link TokenAmount}.
    *
    * @param other
