@@ -29,17 +29,20 @@
   "dependencies": {
     "@types/bn.js": "^5.1.0",
     "big.js": "^6.1.1",
-    "bn.js": "^5.2.0",
     "decimal.js-light": "^2.5.0",
-    "jsbi": "^3.2.3",
     "tiny-invariant": "^1.1.0",
     "toformat": "^2.0.0"
+  },
+  "peerDependencies": {
+    "bn.js": "^5.2.0",
+    "jsbi": "^3 || ^4"
   },
   "devDependencies": {
     "@types/big.js": "^6.1.2",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
+    "bn.js": "^5.2.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
@@ -48,6 +51,7 @@
     "eslint-plugin-unused-imports": "^1.1.4",
     "husky": ">=7.0.2",
     "jest": "^27.1.1",
+    "jsbi": "^3.2.3",
     "lint-staged": ">=11.1.2",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.5",
