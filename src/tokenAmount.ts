@@ -1,5 +1,4 @@
 import { BigSource } from "big.js";
-import Decimal from "decimal.js-light";
 import JSBI from "jsbi";
 import invariant from "tiny-invariant";
 
@@ -88,14 +87,26 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
     token: Tk,
     uiAmount: string
   ): TokenAmount<Tk> {
-    return new TokenAmount<Tk>(
-      token,
-      JSBI.BigInt(
-        new Decimal(uiAmount)
-          .times(new Decimal(10).pow(token.decimals))
-          .toFixed(0)
-      )
+    const parts = uiAmount.split(".");
+    if (parts.length === 0) {
+      throw new Error("empty number");
+    }
+    invariant(parts[0]);
+    const whole = JSBI.BigInt(parts[0]);
+    const fraction = parts[1]
+      ? JSBI.BigInt(
+          parts[1].slice(0, token.decimals) +
+            Array(token.decimals).fill("0").slice(parts[1].length).join("")
+        )
+      : JSBI.BigInt(0);
+    const combined = JSBI.add(
+      JSBI.multiply(
+        whole,
+        JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(token.decimals))
+      ),
+      fraction
     );
+    return new TokenAmount<Tk>(token, combined);
   }
 
   public get raw(): JSBI {
