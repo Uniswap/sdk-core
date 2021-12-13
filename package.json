@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "big.js": "^6.1.1",
-    "decimal.js-light": "^2.5.0",
+    "decimal.js-light": "^2.5.1",
     "tiny-invariant": "^1.2.0",
     "toformat": "^2.0.0",
     "tslib": "^2.3.1"
@@ -52,10 +52,10 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "husky": ">=7.0.4",
+    "husky": "^7.0.4",
     "jest": "^27.4.5",
     "jsbi": "^4.1.0",
-    "lint-staged": ">=12.1.2",
+    "lint-staged": "^12.1.2",
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.1",
     "tsdx": "^0.14.1",

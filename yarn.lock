@@ -2586,7 +2586,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.7.0
     big.js: ^6.1.1
     bn.js: ^5.2.0
-    decimal.js-light: ^2.5.0
+    decimal.js-light: ^2.5.1
     eslint: ^8.4.1
     eslint-config-prettier: ^8.3.0
     eslint-import-resolver-node: ^0.3.6
@@ -2594,10 +2594,10 @@ __metadata:
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-simple-import-sort: ^7.0.0
     eslint-plugin-unused-imports: ^2.0.0
-    husky: ">=7.0.4"
+    husky: ^7.0.4
     jest: ^27.4.5
     jsbi: ^4.1.0
-    lint-staged: ">=12.1.2"
+    lint-staged: ^12.1.2
     prettier: ^2.5.1
     tiny-invariant: ^1.2.0
     toformat: ^2.0.0
@@ -4117,7 +4117,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"decimal.js-light@npm:^2.5.0":
+"decimal.js-light@npm:^2.5.1":
   version: 2.5.1
   resolution: "decimal.js-light@npm:2.5.1"
   checksum: f5a2c7eac1c4541c8ab8a5c8abea64fc1761cefc7794bd5f8afd57a8a78d1b51785e0c4e4f85f4895a043eaa90ddca1edc3981d1263eb6ddce60f32bf5fe66c9
@@ -6025,7 +6025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:>=7.0.4":
+"husky@npm:^7.0.4":
   version: 7.0.4
   resolution: "husky@npm:7.0.4"
   bin:
@@ -8025,7 +8025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:>=12.1.2":
+"lint-staged@npm:^12.1.2":
   version: 12.1.2
   resolution: "lint-staged@npm:12.1.2"
   dependencies:
