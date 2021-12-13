@@ -7,6 +7,14 @@
 
 Math utilities for handling currency and token amounts backed by integers.
 
+## Local Development
+
+```
+yarn install
+yarn prepare
+yarn build
+```
+
 ## License
 
 MIT
