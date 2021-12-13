@@ -10,6 +10,9 @@
     "src/",
     "dist/"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/Ubeswap/token-math.git",
   "keywords": [
     "uniswap",
