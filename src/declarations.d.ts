@@ -3,5 +3,5 @@
 
 declare module "toformat" {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  export default <T extends unknown>(_input: T) => T;
+  export default <T>(_input: T) => T;
 }
