@@ -38,6 +38,7 @@
     "jsbi": "^3 || ^4"
   },
   "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.0",
     "@types/big.js": "^6.1.2",
     "@types/bn.js": "^5.1.0",
     "@types/jest": "^27.0.3",
@@ -46,6 +47,7 @@
     "bn.js": "^5.2.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-node": "^0.3.6",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
@@ -64,5 +66,6 @@
   },
   "lint-staged": {
     "*.{css,html,js,json,jsx,md,sass,scss,ts,tsx,vue,yaml,yml}": "prettier --write"
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }
