@@ -4,7 +4,7 @@ import JSBI from "jsbi";
 import invariant from "tiny-invariant";
 import toFormat from "toformat";
 
-import { Rounding } from "./constants";
+import { Rounding, ZERO } from "./constants";
 import { BigintIsh, parseBigintIsh } from "./utils";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -261,5 +261,13 @@ export class Fraction {
    */
   get asNumber(): number {
     return JSBI.toNumber(this.numerator) / JSBI.toNumber(this.denominator);
+  }
+
+  /**
+   * Returns true if this number (the numerator) is equal to zero.
+   * @returns
+   */
+  isZero(): boolean {
+    return JSBI.EQ(this.numerator, ZERO);
   }
 }
