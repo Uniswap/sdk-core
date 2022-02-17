@@ -260,6 +260,6 @@ export class Fraction {
    * Gets the value of this {@link Fraction} as a number.
    */
   get asNumber(): number {
-    return parseFloat(this.toFixed(10));
+    return JSBI.toNumber(this.numerator) / JSBI.toNumber(this.denominator);
   }
 }
