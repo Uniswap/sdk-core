@@ -267,7 +267,12 @@ export class Fraction {
         ? Number.NEGATIVE_INFINITY
         : Number.NaN;
     }
-    return JSBI.toNumber(this.numerator) / JSBI.toNumber(this.denominator);
+    const result =
+      JSBI.toNumber(this.numerator) / JSBI.toNumber(this.denominator);
+    if (!Number.isNaN(result)) {
+      return result;
+    }
+    return parseFloat(this.toFixed(10));
   }
 
   /**
