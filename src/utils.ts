@@ -22,5 +22,8 @@ export function parseBigintIsh(bigintIsh: BigintIsh): JSBI {
  * @returns
  */
 export const makeDecimalMultiplier = (decimals: number): JSBI => {
+  if (decimals <= 18) {
+    return JSBI.BigInt(10 ** decimals);
+  }
   return JSBI.exponentiate(TEN, JSBI.BigInt(decimals));
 };
