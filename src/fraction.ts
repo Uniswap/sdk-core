@@ -47,7 +47,7 @@ export class Fraction {
   readonly denominator: JSBI;
 
   static readonly ZERO: Fraction = new Fraction(0);
-  static readonly ONE: Fraction = new Fraction(0);
+  static readonly ONE: Fraction = new Fraction(1);
 
   constructor(numerator: BigintIsh, denominator: BigintIsh = JSBI.BigInt(1)) {
     this.numerator = JSBI.BigInt(parseBigintIsh(numerator));
