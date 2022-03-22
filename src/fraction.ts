@@ -280,11 +280,11 @@ export class Fraction {
   }
 
   /**
-   * Returns true if this number (the numerator) is equal to zero.
+   * Returns true if this number (the numerator) is equal to zero and the denominator is non-zero.
    * @returns
    */
   isZero(): boolean {
-    return JSBI.EQ(this.numerator, ZERO);
+    return JSBI.EQ(this.numerator, ZERO) && JSBI.NE(this.denominator, ZERO);
   }
 
   /**
