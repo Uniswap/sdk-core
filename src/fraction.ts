@@ -286,4 +286,12 @@ export class Fraction {
   isZero(): boolean {
     return JSBI.EQ(this.numerator, ZERO);
   }
+
+  /**
+   * Returns true if this number (the numerator) is not equal to zero.
+   * @returns
+   */
+  isNonZero(): boolean {
+    return !this.isZero();
+  }
 }

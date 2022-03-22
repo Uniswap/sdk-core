@@ -1,13 +1,19 @@
 import JSBI from "jsbi";
 
+/**
+ * Zero bigint.
+ */
 export const ZERO = JSBI.BigInt(0);
-export const ONE = JSBI.BigInt(1);
-export const TEN = JSBI.BigInt(10);
 
-export enum TradeType {
-  EXACT_INPUT,
-  EXACT_OUTPUT,
-}
+/**
+ * One bigint.
+ */
+export const ONE = JSBI.BigInt(1);
+
+/**
+ * 10 bigint.
+ */
+export const TEN = JSBI.BigInt(10);
 
 export enum Rounding {
   ROUND_DOWN,
