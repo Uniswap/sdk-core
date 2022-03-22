@@ -110,12 +110,16 @@ export class Fraction {
     }
   }
 
-  // performs floor division
+  /**
+   * Performs floor division.
+   */
   get quotient(): JSBI {
     return JSBI.divide(this.numerator, this.denominator);
   }
 
-  // remainder after floor division
+  /**
+   * Remainder after floor division.
+   */
   get remainder(): Fraction {
     return new Fraction(
       JSBI.remainder(this.numerator, this.denominator),

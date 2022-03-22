@@ -8,6 +8,11 @@ import { TEN } from "./constants";
  */
 export declare type BigintIsh = JSBI | string | number | bigint | BN;
 
+/**
+ * Parses a {@link BigintIsh} into a {@link JSBI}.
+ * @param bigintIsh
+ * @returns
+ */
 export function parseBigintIsh(bigintIsh: BigintIsh): JSBI {
   return bigintIsh instanceof JSBI
     ? bigintIsh
