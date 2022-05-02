@@ -2,6 +2,8 @@ import { Rounding } from "./constants";
 import { Fraction, NumberFormat } from "./fraction";
 import { BigintIsh } from "./utils";
 
+const ONE_HUNDRED = new Fraction(100);
+
 /**
  * Converts a fraction to a percent
  * @param fraction the fraction to convert
@@ -80,7 +82,7 @@ export class Percent extends Fraction {
     rounding?: Rounding
   ): string {
     return super
-      .multiply(Percent.ONE_HUNDRED)
+      .multiply(ONE_HUNDRED)
       .toSignificant(significantDigits, format, rounding);
   }
 
@@ -89,9 +91,7 @@ export class Percent extends Fraction {
     format?: NumberFormat,
     rounding?: Rounding
   ): string {
-    return super
-      .multiply(Percent.ONE_HUNDRED)
-      .toFixed(decimalPlaces, format, rounding);
+    return super.multiply(ONE_HUNDRED).toFixed(decimalPlaces, format, rounding);
   }
 
   /**
