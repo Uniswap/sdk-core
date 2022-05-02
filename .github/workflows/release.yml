@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-node@v2.4.0
         with:
           node-version: 14.x
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: .yarn/
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
