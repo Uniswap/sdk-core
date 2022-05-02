@@ -70,6 +70,10 @@ export class Percent extends Fraction {
     return toPercent(super.divide(other));
   }
 
+  /**
+   * Swaps the numerator and denominator of the {@link Percent}.
+   * @returns
+   */
   override invert(): Percent {
     return new Percent(this.denominator, this.numerator);
   }

@@ -127,6 +127,10 @@ export class Fraction {
     );
   }
 
+  /**
+   * Swaps the numerator and denominator of the {@link Fraction}.
+   * @returns
+   */
   invert(): Fraction {
     return new Fraction(this.denominator, this.numerator);
   }
@@ -197,6 +201,9 @@ export class Fraction {
     );
   }
 
+  /**
+   * Divides this {@link Fraction} by another {@link Fraction}.
+   */
   divide(other: Fraction | BigintIsh): Fraction {
     const otherParsed = Fraction.tryParseFraction(other);
     return new Fraction(
@@ -205,6 +212,13 @@ export class Fraction {
     );
   }
 
+  /**
+   * Converts this {@link Fraction} to a string with the specified significant digits.
+   * @param significantDigits
+   * @param format
+   * @param rounding
+   * @returns
+   */
   toSignificant(
     significantDigits: number,
     format: NumberFormat = { groupSeparator: "" },

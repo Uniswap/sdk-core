@@ -57,13 +57,16 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^7.0.4",
-    "jest": "^28.0.3",
+    "jest": "^27",
     "jsbi": "^4.3.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
     "ts-jest": "^27.1.4",
     "tsdx": "^0.14.1",
     "typescript": "^4.6.4"
+  },
+  "resolutions": {
+    "jest": "^27"
   },
   "engines": {
     "node": ">=10"
