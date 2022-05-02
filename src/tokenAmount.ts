@@ -184,15 +184,15 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
   }
 
   /**
-   * Multiplies this token amount by a percent.
+   * Multiplies this token amount by a fraction.
    * WARNING: this loses precision
    * @param percent
    * @returns
    */
-  public multiplyBy(percent: Percent): TokenAmount<T> {
+  public multiplyBy(fraction: Fraction): TokenAmount<T> {
     return new TokenAmount(
       this.token,
-      percent.asFraction.multiply(this.raw).toFixed(0)
+      fraction.asFraction.multiply(this.raw).toFixed(0)
     );
   }
 
