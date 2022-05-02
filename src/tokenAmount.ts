@@ -212,12 +212,10 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
    * @returns
    */
   public format({ numberFormatOptions, locale }: IFormatUint = {}): string {
-    const asExactString = this.toFixed(this.token.decimals);
-    const asNumber = parseFloat(asExactString);
     return `${
       numberFormatOptions !== undefined
-        ? asNumber.toLocaleString(locale, numberFormatOptions)
-        : stripTrailingZeroes(asExactString)
+        ? this.asNumber.toLocaleString(locale, numberFormatOptions)
+        : stripTrailingZeroes(this.toFixed(this.token.decimals))
     }`;
   }
 
