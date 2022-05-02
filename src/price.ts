@@ -6,13 +6,13 @@ import { Token } from "./token";
 import { TokenAmount } from "./tokenAmount";
 import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
 
-export class Price<T extends Token<T>> extends Fraction {
-  public readonly baseCurrency: T; // input i.e. denominator
-  public readonly quoteCurrency: T; // output i.e. numerator
-  public readonly scalar: Fraction; // used to adjust the raw fraction w/r/t the decimals of the {base,quote}Token
+export abstract class Price<T extends Token<T>> extends Fraction {
+  readonly baseCurrency: T; // input i.e. denominator
+  readonly quoteCurrency: T; // output i.e. numerator
+  readonly scalar: Fraction; // used to adjust the raw fraction w/r/t the decimals of the {base,quote}Token
 
   // denominator and numerator _must_ be raw, i.e. in the native representation
-  public constructor(
+  constructor(
     baseCurrency: T,
     quoteCurrency: T,
     denominator: BigintIsh,
@@ -28,16 +28,28 @@ export class Price<T extends Token<T>> extends Fraction {
     );
   }
 
-  public get raw(): Fraction {
+  /**
+   * Create a new Price.
+   * @param token
+   * @param amount
+   */
+  abstract new(
+    baseCurrency: T,
+    quoteCurrency: T,
+    denominator: BigintIsh,
+    numerator: BigintIsh
+  ): this;
+
+  get raw(): Fraction {
     return new Fraction(this.numerator, this.denominator);
   }
 
-  public get adjusted(): Fraction {
+  get adjusted(): Fraction {
     return super.multiply(this.scalar);
   }
 
-  public override invert(): Price<T> {
-    return new Price(
+  override invert(): this {
+    return this.new(
       this.quoteCurrency,
       this.baseCurrency,
       this.numerator,
@@ -45,13 +57,13 @@ export class Price<T extends Token<T>> extends Fraction {
     );
   }
 
-  public override multiply(other: Price<T>): Price<T> {
+  override multiply(other: this): this {
     invariant(
       this.quoteCurrency.equals(other.baseCurrency),
       `multiply token mismatch: ${this.quoteCurrency.toString()} !== ${other.baseCurrency.toString()}`
     );
     const fraction = super.multiply(other);
-    return new Price(
+    return this.new(
       this.baseCurrency,
       other.quoteCurrency,
       fraction.denominator,
@@ -60,18 +72,18 @@ export class Price<T extends Token<T>> extends Fraction {
   }
 
   // performs floor division on overflow
-  public quote(tokenAmount: TokenAmount<T>): TokenAmount<T> {
+  quote<B extends TokenAmount<T>>(tokenAmount: B): B {
     invariant(
       tokenAmount.token.equals(this.baseCurrency),
       `quote token mismatch: ${tokenAmount.token.toString()} !== ${this.baseCurrency.toString()}`
     );
-    return new TokenAmount(
+    return tokenAmount.new(
       this.quoteCurrency,
       super.multiply(tokenAmount.raw).quotient
     );
   }
 
-  public override toSignificant(
+  override toSignificant(
     significantDigits = 6,
     format?: NumberFormat,
     rounding?: Rounding
@@ -79,7 +91,7 @@ export class Price<T extends Token<T>> extends Fraction {
     return this.adjusted.toSignificant(significantDigits, format, rounding);
   }
 
-  public override toFixed(
+  override toFixed(
     decimalPlaces = 4,
     format?: NumberFormat,
     rounding?: Rounding
