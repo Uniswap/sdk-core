@@ -21,14 +21,23 @@ export function parseBigintIsh(bigintIsh: BigintIsh): JSBI {
     : JSBI.BigInt(bigintIsh);
 }
 
+const decimalMultipliersCache: JSBI[] = [];
+
 /**
- * Creates the multipler for an amount of decimals.
+ * Creates the multiplier for an amount of decimals.
  * @param decimals
  * @returns
  */
 export const makeDecimalMultiplier = (decimals: number): JSBI => {
-  if (decimals <= 18) {
-    return JSBI.BigInt(10 ** decimals);
+  const cached = decimalMultipliersCache[decimals];
+  if (cached) {
+    return cached;
   }
-  return JSBI.exponentiate(TEN, JSBI.BigInt(decimals));
+  if (decimals <= 18) {
+    return (decimalMultipliersCache[decimals] = JSBI.BigInt(10 ** decimals));
+  }
+  return (decimalMultipliersCache[decimals] = JSBI.exponentiate(
+    TEN,
+    JSBI.BigInt(decimals)
+  ));
 };
