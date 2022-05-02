@@ -20,6 +20,10 @@ export class TokenAmountUnderflow extends RangeError {
   }
 }
 
+/**
+ * Validates that a number falls within the range of u64.
+ * @param value
+ */
 export function validateU64(value: JSBI): void {
   if (!JSBI.greaterThanOrEqual(value, ZERO)) {
     throw new TokenAmountUnderflow(value);
@@ -29,6 +33,10 @@ export function validateU64(value: JSBI): void {
   }
 }
 
+/**
+ * Validates that a number falls within the range of u256.
+ * @param value
+ */
 export function validateU256(value: JSBI): void {
   if (!JSBI.greaterThanOrEqual(value, ZERO)) {
     throw new TokenAmountUnderflow(value);
@@ -62,11 +70,11 @@ const stripTrailingZeroes = (num: string): string => {
 };
 
 export class TokenAmount<T extends Token<T>> extends Fraction {
-  public readonly token: T;
-
-  // amount _must_ be raw, i.e. in the native representation
-  public constructor(
-    token: T,
+  /**
+   * amount _must_ be raw, i.e. in the native representation
+   */
+  constructor(
+    readonly token: T,
     amount: BigintIsh,
     validate?: (value: JSBI) => void
   ) {
@@ -83,7 +91,7 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
    * @param uiAmount
    * @returns
    */
-  public static parseFromString<Tk extends Token<Tk>>(
+  static parseFromString<Tk extends Token<Tk>>(
     token: Tk,
     uiAmount: string
   ): TokenAmount<Tk> {
