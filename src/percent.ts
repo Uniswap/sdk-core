@@ -70,6 +70,10 @@ export class Percent extends Fraction {
     return toPercent(super.divide(other));
   }
 
+  override invert(): Percent {
+    return new Percent(this.denominator, this.numerator);
+  }
+
   override toSignificant(
     significantDigits = 5,
     format?: NumberFormat,
