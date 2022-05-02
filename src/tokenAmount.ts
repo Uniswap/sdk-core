@@ -190,6 +190,16 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
    * @returns
    */
   public multiplyBy(fraction: Fraction): TokenAmount<T> {
+    return this.scale(fraction);
+  }
+
+  /**
+   * Multiplies this token amount by a fraction.
+   * WARNING: this loses precision
+   * @param percent
+   * @returns
+   */
+  public scale(fraction: Fraction): TokenAmount<T> {
     return new TokenAmount(
       this.token,
       fraction.asFraction.multiply(this.raw).toFixed(0)
