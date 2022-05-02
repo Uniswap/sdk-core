@@ -164,10 +164,10 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
    * @param other
    * @returns
    */
-  public divideByAmount(other: TokenAmount<T>): Percent {
+  public percentOf(other: TokenAmount<T>): Percent {
     invariant(
       this.token.equals(other.token),
-      `divideByAmount token mismatch: ${this.token.toString()} !== ${other.token.toString()}`
+      `percentOf token mismatch: ${this.token.toString()} !== ${other.token.toString()}`
     );
     const frac = this.divide(other);
     return new Percent(frac.numerator, frac.denominator);
@@ -181,16 +181,6 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
   public divideBy(other: Fraction): Percent {
     const frac = this.divide(other);
     return new Percent(frac.numerator, frac.denominator);
-  }
-
-  /**
-   * Multiplies this token amount by a fraction.
-   * WARNING: this loses precision
-   * @param percent
-   * @returns
-   */
-  public multiplyBy(fraction: Fraction): TokenAmount<T> {
-    return this.scale(fraction);
   }
 
   /**
@@ -213,7 +203,7 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
    * @returns
    */
   public reduceBy(percent: Percent): TokenAmount<T> {
-    return this.multiplyBy(new Percent(1, 1).subtract(percent));
+    return this.scale(Percent.ONE_HUNDRED.subtract(percent));
   }
 
   /**
@@ -249,5 +239,30 @@ export class TokenAmount<T extends Token<T>> extends Fraction {
       Fraction.isFraction(other) &&
       !!(other as unknown as Record<string, unknown>)?.token
     );
+  }
+
+  // ----------------------------------------------------------------
+  // DEPRECATED FUNCTIONS
+  // ----------------------------------------------------------------
+
+  /**
+   * Gets this TokenAmount as a percentage of the other TokenAmount.
+   * @param other
+   * @deprecated use {@link percentOf}
+   * @returns
+   */
+  public divideByAmount(other: TokenAmount<T>): Percent {
+    return this.percentOf(other);
+  }
+
+  /**
+   * Multiplies this token amount by a fraction.
+   * WARNING: this loses precision
+   * @param percent
+   * @deprecated use {@link scale}
+   * @returns
+   */
+  public multiplyBy(fraction: Fraction): TokenAmount<T> {
+    return this.scale(fraction);
   }
 }
