@@ -4,7 +4,7 @@ import JSBI from "jsbi";
 import invariant from "tiny-invariant";
 import toFormat from "toformat";
 
-import { Rounding, ZERO } from "./constants";
+import { ONE, Rounding, ZERO } from "./constants";
 import { BigintIsh, parseBigintIsh } from "./utils";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -49,9 +49,9 @@ export class Fraction {
   static readonly ZERO: Fraction = new Fraction(0);
   static readonly ONE: Fraction = new Fraction(1);
 
-  constructor(numerator: BigintIsh, denominator: BigintIsh = JSBI.BigInt(1)) {
-    this.numerator = JSBI.BigInt(parseBigintIsh(numerator));
-    this.denominator = JSBI.BigInt(parseBigintIsh(denominator));
+  constructor(numerator: BigintIsh, denominator: BigintIsh = ONE) {
+    this.numerator = parseBigintIsh(numerator);
+    this.denominator = parseBigintIsh(denominator);
   }
 
   /**
