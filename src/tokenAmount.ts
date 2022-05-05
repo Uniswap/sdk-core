@@ -16,25 +16,23 @@ import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
  */
 export const parseAmountFromString = <Tk extends Token<Tk>>(
   token: Tk,
-  uiAmount: string
+  uiAmount: string,
+  decimalSeparator = "."
 ): JSBI => {
-  const parts = uiAmount.split(".");
+  const parts = uiAmount.split(decimalSeparator);
   if (parts.length === 0) {
     throw new Error("empty number");
   }
-  invariant(parts[0]);
-  const whole = JSBI.BigInt(parts[0]);
-  const fraction = parts[1]
+  const [wholeRaw, fractionRaw] = parts;
+  const whole = wholeRaw ? JSBI.BigInt(wholeRaw) : ZERO;
+  const fraction = fractionRaw
     ? JSBI.BigInt(
-        parts[1].slice(0, token.decimals) +
-          Array(token.decimals).fill("0").slice(parts[1].length).join("")
+        fractionRaw.slice(0, token.decimals) +
+          Array(token.decimals).fill("0").slice(fractionRaw.length).join("")
       )
-    : JSBI.BigInt(0);
+    : ZERO;
   const combined = JSBI.add(
-    JSBI.multiply(
-      whole,
-      JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(token.decimals))
-    ),
+    JSBI.multiply(whole, makeDecimalMultiplier(token.decimals)),
     fraction
   );
   return combined;
