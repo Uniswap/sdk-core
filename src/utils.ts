@@ -21,7 +21,7 @@ export function parseBigintIsh(bigintIsh: BigintIsh): JSBI {
     : JSBI.BigInt(bigintIsh);
 }
 
-const decimalMultipliersCache: JSBI[] = [];
+const decimalMultipliersCache: Record<number, JSBI> = {};
 
 /**
  * Creates the multiplier for an amount of decimals.
