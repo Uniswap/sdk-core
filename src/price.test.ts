@@ -49,6 +49,7 @@ describe("Price", () => {
     // $30k/btc
     const price = new MyPrice(btc, cusd, 1_00000000, 30_000_000000);
     expect(price.toFixed(0)).toEqual("30000");
+    expect(price.toFixedQuote()).toEqual("30000.000000");
     expect(price.asNumber).toEqual(30000);
     expect(price.scalar.toFixed(2)).toEqual("100.00");
 

@@ -99,6 +99,19 @@ export abstract class Price<T extends Token<T>> extends Fraction {
     return this.adjusted.toFixed(decimalPlaces, format, rounding);
   }
 
+  /**
+   * Returns the price in terms of the quote currency.
+   * @param format
+   * @param rounding
+   * @returns
+   */
+  toFixedQuote(
+    format: NumberFormat = { groupSeparator: "" },
+    rounding?: Rounding
+  ): string {
+    return this.toFixed(this.quoteCurrency.decimals, format, rounding);
+  }
+
   override get asNumber(): number {
     return this.adjusted.asNumber;
   }
