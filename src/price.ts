@@ -11,7 +11,14 @@ export abstract class Price<T extends Token<T>> extends Fraction {
   readonly quoteCurrency: T; // output i.e. numerator
   readonly scalar: Fraction; // used to adjust the raw fraction w/r/t the decimals of the {base,quote}Token
 
-  // denominator and numerator _must_ be raw, i.e. in the native representation
+  /**
+   * Constructs a Price.
+   *
+   * denominator and numerator _must_ be raw, i.e. in the native representation
+   *
+   * @param denominator Units of base currency. E.g. 1 BTC would be 1_00000000
+   * @param numerator Units of quote currency. E.g. $30k at 6 decimals would be 30_000_000000
+   */
   constructor(
     baseCurrency: T,
     quoteCurrency: T,
