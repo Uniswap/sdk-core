@@ -98,4 +98,8 @@ export abstract class Price<T extends Token<T>> extends Fraction {
   ): string {
     return this.adjusted.toFixed(decimalPlaces, format, rounding);
   }
+
+  override get asNumber(): number {
+    return this.adjusted.asNumber;
+  }
 }
