@@ -9,6 +9,59 @@ import { Token } from "./token";
 import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
 
 /**
+ * Gets the separator of the provided locale.
+ *
+ * Source: {@link https://stackoverflow.com/questions/1074660/with-a-browser-how-do-i-know-which-decimal-separator-does-the-operating-system}
+ *
+ * @param separatorType
+ * @param locale
+ * @returns
+ */
+export const getSeparator = (
+  separatorType: "decimal" | "group",
+  locale?: string
+) => {
+  const numberWithDecimalSeparator = 1000.1;
+  return Intl.NumberFormat(locale)
+    .formatToParts(numberWithDecimalSeparator)
+    .find((part) => part.type === separatorType)?.value;
+};
+
+/**
+ * Gets the decimal separator of the provided locale.
+ *
+ * Source: {@link https://stackoverflow.com/questions/1074660/with-a-browser-how-do-i-know-which-decimal-separator-does-the-operating-system}
+ *
+ * @param locale
+ * @returns
+ */
+export const getDecimalSeparator = (locale?: string) => {
+  return getSeparator("decimal", locale);
+};
+
+/**
+ * Gets the group separator of the provided locale.
+ *
+ * Source: {@link https://stackoverflow.com/questions/1074660/with-a-browser-how-do-i-know-which-decimal-separator-does-the-operating-system}
+ *
+ * @param locale
+ * @returns
+ */
+export const getGroupSeparator = (locale?: string) => {
+  return getSeparator("group", locale);
+};
+
+/**
+ * The decimal separator of the default locale.
+ */
+export const DEFAULT_LOCALE_DECIMAL_SEPARATOR = getDecimalSeparator() ?? ".";
+
+/**
+ * The group separator of the default locale.
+ */
+export const DEFAULT_LOCALE_GROUP_SEPARATOR = getGroupSeparator() ?? ",";
+
+/**
  * Parses a token amount from a decimal representation.
  * @param token
  * @param uiAmount
@@ -17,14 +70,17 @@ import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
 export const parseAmountFromString = <Tk extends Token<Tk>>(
   token: Tk,
   uiAmount: string,
-  decimalSeparator = "."
+  decimalSeparator = DEFAULT_LOCALE_DECIMAL_SEPARATOR,
+  groupSeparator = DEFAULT_LOCALE_GROUP_SEPARATOR
 ): JSBI => {
   const parts = uiAmount.split(decimalSeparator);
   if (parts.length === 0) {
     throw new Error("empty number");
   }
   const [wholeRaw, fractionRaw] = parts;
-  const whole = wholeRaw ? JSBI.BigInt(wholeRaw) : ZERO;
+  const whole = wholeRaw
+    ? JSBI.BigInt(wholeRaw.split(groupSeparator).join(""))
+    : ZERO;
   const fraction = fractionRaw
     ? JSBI.BigInt(
         fractionRaw.slice(0, token.decimals) +
