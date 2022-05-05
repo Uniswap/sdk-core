@@ -1,4 +1,4 @@
-import _Big, { RoundingMode } from "big.js";
+import _Big from "big.js";
 import _Decimal from "decimal.js-light";
 import JSBI from "jsbi";
 import invariant from "tiny-invariant";
@@ -20,11 +20,14 @@ const toSignificantRounding = {
 };
 
 const toFixedRounding = {
-  [Rounding.ROUND_DOWN]: RoundingMode.RoundDown,
-  [Rounding.ROUND_HALF_UP]: RoundingMode.RoundHalfUp,
-  [Rounding.ROUND_UP]: RoundingMode.RoundUp,
+  [Rounding.ROUND_DOWN]: Big.roundDown,
+  [Rounding.ROUND_HALF_UP]: Big.roundHalfUp,
+  [Rounding.ROUND_UP]: Big.roundUp,
 };
 
+/**
+ * Formatting options for Decimal.js.
+ */
 export interface NumberFormat {
   decimalSeparator?: string;
   groupSeparator?: string;
