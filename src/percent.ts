@@ -1,5 +1,6 @@
 import { Rounding } from "./constants";
-import { Fraction, NumberFormat } from "./fraction";
+import { NumberFormat } from "./format";
+import { Fraction } from "./fraction";
 import { BigintIsh } from "./utils";
 
 const ONE_HUNDRED = new Fraction(100);

@@ -1,7 +1,8 @@
 import invariant from "tiny-invariant";
 
 import { Rounding } from "./constants";
-import { Fraction, NumberFormat } from "./fraction";
+import { NumberFormat } from "./format";
+import { Fraction } from "./fraction";
 import { Token } from "./token";
 import { TokenAmount } from "./tokenAmount";
 import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";

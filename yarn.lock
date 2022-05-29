@@ -1625,7 +1625,6 @@ __metadata:
     lint-staged: ^12.4.1
     prettier: ^2.6.2
     tiny-invariant: ^1.2.0
-    toformat: ^2.0.0
     ts-jest: ^27.1.4
     tslib: ^2.4.0
     typescript: ^4.6.4
@@ -6080,13 +6079,6 @@ __metadata:
   dependencies:
     is-number: ^7.0.0
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
-  languageName: node
-  linkType: hard
-
-"toformat@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "toformat@npm:2.0.0"
-  checksum: c75341911a811a85c309e2c3eb8e9c7b60f26e2c629170179fc92ed339a2faf44433ebde75d4ac6dbe6f55a2aa044e1d4cd5242dbdd5e4c047babbe6defd8387
   languageName: node
   linkType: hard
 

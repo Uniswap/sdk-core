@@ -1,9 +1,10 @@
-import { BigSource } from "big.js";
+import Big, { BigSource } from "big.js";
 import JSBI from "jsbi";
 import invariant from "tiny-invariant";
 
 import { MAX_U64, MAX_U256, Rounding, ZERO } from "./constants";
-import { Big, Fraction, NumberFormat } from "./fraction";
+import { formatBig, NumberFormat } from "./format";
+import { Fraction } from "./fraction";
 import { Percent } from "./percent";
 import { Token } from "./token";
 import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
@@ -62,6 +63,16 @@ export const DEFAULT_LOCALE_DECIMAL_SEPARATOR = getDecimalSeparator() ?? ".";
 export const DEFAULT_LOCALE_GROUP_SEPARATOR = getGroupSeparator() ?? ",";
 
 /**
+ * The default decimal separator.
+ */
+export const DEFAULT_DECIMAL_SEPARATOR = ".";
+
+/**
+ * The default group separator.
+ */
+export const DEFAULT_GROUP_SEPARATOR = ",";
+
+/**
  * Parses a token amount from a decimal representation.
  * @param token
  * @param uiAmount
@@ -70,8 +81,8 @@ export const DEFAULT_LOCALE_GROUP_SEPARATOR = getGroupSeparator() ?? ",";
 export const parseAmountFromString = <Tk extends Token<Tk>>(
   token: Tk,
   uiAmount: string,
-  decimalSeparator = ".",
-  groupSeparator = ","
+  decimalSeparator = DEFAULT_DECIMAL_SEPARATOR,
+  groupSeparator = DEFAULT_GROUP_SEPARATOR
 ): JSBI => {
   const parts = uiAmount.split(decimalSeparator);
   if (parts.length === 0) {
@@ -216,16 +227,13 @@ export abstract class TokenAmount<T extends Token<T>> extends Fraction {
   }
 
   toExact(format: NumberFormat = { groupSeparator: "" }): string {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    Big.DP = this.token.decimals;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-    return (
+    return formatBig(
       new Big(this.numerator as unknown as BigSource).div(
         this.denominator.toString()
-      ) as unknown as {
-        toFormat: (format: NumberFormat) => string;
-      }
-    ).toFormat(format);
+      ),
+      this.token.decimals,
+      format
+    );
   }
 
   override add(other: this): this {
@@ -286,6 +294,21 @@ export abstract class TokenAmount<T extends Token<T>> extends Fraction {
    */
   reduceBy(percent: Percent): this {
     return this.scale(Percent.ONE_HUNDRED.subtract(percent));
+  }
+
+  /**
+   * Formats the token amount quantity with units.
+   *
+   * This function is not locale-specific: it hardcodes "en-US"-like behavior.
+   *
+   * @returns
+   */
+  formatUnits(): string {
+    return `${this.toExact({
+      groupSeparator: DEFAULT_GROUP_SEPARATOR,
+      groupSize: 3,
+      decimalSeparator: DEFAULT_DECIMAL_SEPARATOR,
+    })} ${this.token.symbol}`;
   }
 
   /**

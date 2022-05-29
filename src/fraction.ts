@@ -1,41 +1,16 @@
-import _Big from "big.js";
-import _Decimal from "decimal.js-light";
+import Big from "big.js";
+import Decimal from "decimal.js-light";
 import JSBI from "jsbi";
 import invariant from "tiny-invariant";
-import toFormat from "toformat";
 
 import { ONE, Rounding, ZERO } from "./constants";
+import {
+  formatBig,
+  formatDecimal,
+  NumberFormat,
+  toSignificantRounding,
+} from "./format";
 import { BigintIsh, parseBigintIsh } from "./utils";
-
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-export const Decimal: typeof _Decimal = toFormat(_Decimal);
-
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-export const Big: typeof _Big = toFormat(_Big);
-
-const toSignificantRounding = {
-  [Rounding.ROUND_DOWN]: _Decimal.ROUND_DOWN,
-  [Rounding.ROUND_HALF_UP]: _Decimal.ROUND_HALF_UP,
-  [Rounding.ROUND_UP]: _Decimal.ROUND_UP,
-};
-
-const toFixedRounding = {
-  [Rounding.ROUND_DOWN]: Big.roundDown,
-  [Rounding.ROUND_HALF_UP]: Big.roundHalfUp,
-  [Rounding.ROUND_UP]: Big.roundUp,
-};
-
-/**
- * Formatting options for Decimal.js.
- */
-export interface NumberFormat {
-  decimalSeparator?: string;
-  groupSeparator?: string;
-  groupSize?: number;
-  secondaryGroupSize?: number;
-  fractionGroupSeparator?: string;
-  fractionGroupSize?: number;
-}
 
 /**
  * Number with an integer numerator and denominator.
@@ -240,12 +215,10 @@ export class Fraction {
     const quotient = new Decimal(this.numerator.toString())
       .div(this.denominator.toString())
       .toSignificantDigits(significantDigits);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
-    return (
-      quotient as unknown as {
-        toFormat: (dec: number, format: NumberFormat) => string;
-      }
-    ).toFormat(quotient.decimalPlaces(), format);
+    return formatDecimal(quotient, quotient.decimalPlaces(), {
+      ...format,
+      rounding,
+    });
   }
 
   toFixed(
@@ -259,15 +232,11 @@ export class Fraction {
     );
     invariant(decimalPlaces >= 0, `${decimalPlaces} is negative.`);
 
-    Big.DP = decimalPlaces;
-    Big.RM = toFixedRounding[rounding];
-    return (
-      new Big(this.numerator.toString()).div(
-        this.denominator.toString()
-      ) as unknown as {
-        toFormat: (dec: number, format: NumberFormat) => string;
-      }
-    ).toFormat(decimalPlaces, format);
+    return formatBig(
+      new Big(this.numerator.toString()).div(this.denominator.toString()),
+      decimalPlaces,
+      { ...format, rounding }
+    );
   }
 
   /**

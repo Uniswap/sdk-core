@@ -192,4 +192,18 @@ describe("Fraction", () => {
       expect(frac).toEqual(expected);
     });
   });
+
+  describe("#toFixed", () => {
+    it("works", () => {
+      const frac = new Fraction(23_000_123, 1_000);
+      expect(frac.toFixed(5)).toEqual("23000.12300");
+    });
+  });
+
+  describe("#toSignificant", () => {
+    it("works", () => {
+      const frac = new Fraction(23_000_123, 1_000);
+      expect(frac.toSignificant(6)).toEqual("23000.1");
+    });
+  });
 });
