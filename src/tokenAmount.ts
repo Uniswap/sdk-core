@@ -94,12 +94,18 @@ export const parseAmountFromString = <Tk extends Token<Tk>>(
   return combined;
 };
 
+/**
+ * Thrown when a token amount overflows.
+ */
 export class TokenAmountOverflow extends RangeError {
   constructor(type: string, amount: JSBI) {
     super(`Token amount overflows ${type}: ${amount.toString()}`);
   }
 }
 
+/**
+ * Thrown when a token amount underflows.
+ */
 export class TokenAmountUnderflow extends RangeError {
   constructor(amount: JSBI) {
     super(`Token amount must be greater than zero: ${amount.toString()}`);
@@ -132,6 +138,9 @@ export function validateU256(value: JSBI): void {
   }
 }
 
+/**
+ * Uint formatting options.
+ */
 export interface IFormatUint {
   /**
    * If specified, format this according to `toLocaleString`
@@ -155,6 +164,9 @@ const stripTrailingZeroes = (num: string): string => {
   return `${head}.${tail.replace(/\.0+$/, "")}`;
 };
 
+/**
+ * Represents a quantity of tokens.
+ */
 export abstract class TokenAmount<T extends Token<T>> extends Fraction {
   /**
    * amount _must_ be raw, i.e. in the native representation
