@@ -70,8 +70,8 @@ export const DEFAULT_LOCALE_GROUP_SEPARATOR = getGroupSeparator() ?? ",";
 export const parseAmountFromString = <Tk extends Token<Tk>>(
   token: Tk,
   uiAmount: string,
-  decimalSeparator = DEFAULT_LOCALE_DECIMAL_SEPARATOR,
-  groupSeparator = DEFAULT_LOCALE_GROUP_SEPARATOR
+  decimalSeparator = ".",
+  groupSeparator = ","
 ): JSBI => {
   const parts = uiAmount.split(decimalSeparator);
   if (parts.length === 0) {
