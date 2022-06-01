@@ -2,7 +2,7 @@
   "name": "@ubeswap/token-math",
   "author": "Ian Macalinao <ian@ubeswap.org>",
   "license": "MIT",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "⚒️ A library for token math.",
   "website": "https://ubeswap.org",
   "main": "dist/cjs/index.js",
