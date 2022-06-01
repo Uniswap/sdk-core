@@ -1,4 +1,4 @@
-import Big, { BigSource } from "big.js";
+import Big from "big.js";
 import JSBI from "jsbi";
 import invariant from "tiny-invariant";
 
@@ -228,9 +228,7 @@ export abstract class TokenAmount<T extends Token<T>> extends Fraction {
 
   toExact(format: NumberFormat = { groupSeparator: "" }): string {
     return formatBig(
-      new Big(this.numerator as unknown as BigSource).div(
-        this.denominator.toString()
-      ),
+      new Big(this.numerator.toString()).div(this.denominator.toString()),
       this.token.decimals,
       format
     );
