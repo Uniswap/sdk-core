@@ -23,6 +23,34 @@ const toFixedRounding = {
   [Rounding.ROUND_UP]: Big.roundUp,
 };
 
+/**
+ * Default number format. (no grouping)
+ */
+export const DEFAULT_NUMBER_FORMAT: Required<NumberFormat> = {
+  decimalSeparator: ".",
+  groupSeparator: "",
+  groupSize: 3,
+  rounding: Rounding.ROUND_DOWN,
+};
+
+/**
+ * Default number format display.
+ */
+export const DEFAULT_DISPLAY_NUMBER_FORMAT: Required<NumberFormat> = {
+  ...DEFAULT_NUMBER_FORMAT,
+  groupSeparator: ",",
+};
+
+/**
+ * Formatting options for Decimal.js.
+ */
+export interface NumberFormat {
+  decimalSeparator?: string;
+  groupSeparator?: string;
+  groupSize?: number;
+  rounding?: Rounding;
+}
+
 const formatNum = (
   num: {
     toString(): string;
@@ -80,34 +108,6 @@ const formatNum = (
     return displayIntegerPart;
   }
 };
-
-/**
- * Default number format. (no grouping)
- */
-export const DEFAULT_NUMBER_FORMAT: Required<NumberFormat> = {
-  decimalSeparator: ".",
-  groupSeparator: "",
-  groupSize: 3,
-  rounding: Rounding.ROUND_DOWN,
-};
-
-/**
- * Default number format display.
- */
-export const DEFAULT_DISPLAY_NUMBER_FORMAT: Required<NumberFormat> = {
-  ...DEFAULT_NUMBER_FORMAT,
-  groupSeparator: ",",
-};
-
-/**
- * Formatting options for Decimal.js.
- */
-export interface NumberFormat {
-  decimalSeparator?: string;
-  groupSeparator?: string;
-  groupSize?: number;
-  rounding?: Rounding;
-}
 
 /*
  *  Returns a string representing the value of this big number in fixed-point notation to `dp`
