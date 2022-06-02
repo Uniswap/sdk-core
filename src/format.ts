@@ -94,7 +94,7 @@ const formatNum = (
       let i = nd % groupSize || groupSize;
       displayIntegerPart = intd.slice(0, i);
       for (; i < nd; i += groupSize) {
-        displayIntegerPart += groupSeparator + intd.slice(i, groupSize);
+        displayIntegerPart += groupSeparator + intd.slice(i, i + groupSize);
       }
       if (isNegative) {
         displayIntegerPart = "-" + displayIntegerPart;

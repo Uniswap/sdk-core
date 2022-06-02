@@ -198,6 +198,17 @@ describe("Fraction", () => {
       const frac = new Fraction(23_000_123, 1_000);
       expect(frac.toFixed(5)).toEqual("23000.12300");
     });
+
+    it("works with args", () => {
+      const frac = new Fraction(100_000_000, 1);
+      expect(
+        frac.toFixed(5, {
+          groupSeparator: ",",
+          decimalSeparator: ".",
+          groupSize: 3,
+        })
+      ).toEqual("100,000,000.00000");
+    });
   });
 
   describe("#toSignificant", () => {
