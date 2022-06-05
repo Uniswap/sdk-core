@@ -163,7 +163,7 @@ export interface IFormatUint {
   locale?: string;
 }
 
-const stripTrailingZeroes = (num: string): string => {
+export const stripTrailingZeroes = (num: string): string => {
   const [head, tail, ...rest] = num.split(".");
   if (rest.length > 0 || !head) {
     console.warn(`Invalid number passed to stripTrailingZeroes: ${num}`);
@@ -172,7 +172,8 @@ const stripTrailingZeroes = (num: string): string => {
   if (!tail) {
     return num;
   }
-  return `${head}.${tail.replace(/\.0+$/, "")}`;
+  const newTail = tail.replace(/0+$/, "");
+  return newTail === "" ? head : `${head}.${newTail}`;
 };
 
 /**
@@ -302,11 +303,13 @@ export abstract class TokenAmount<T extends Token<T>> extends Fraction {
    * @returns
    */
   formatUnits(): string {
-    return `${this.toExact({
-      groupSeparator: DEFAULT_GROUP_SEPARATOR,
-      groupSize: 3,
-      decimalSeparator: DEFAULT_DECIMAL_SEPARATOR,
-    })} ${this.token.symbol}`;
+    return `${stripTrailingZeroes(
+      this.toExact({
+        groupSeparator: DEFAULT_GROUP_SEPARATOR,
+        groupSize: 3,
+        decimalSeparator: DEFAULT_DECIMAL_SEPARATOR,
+      })
+    )} ${this.token.symbol}`;
   }
 
   /**
