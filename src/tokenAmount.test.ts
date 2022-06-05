@@ -1,4 +1,4 @@
-import { stripTrailingZeroes } from "./tokenAmount";
+import { stripTrailingZeroes } from "./tokenAmount.js";
 
 describe("tokenAmount", () => {
   describe("#stripTrailingZeroes", () => {

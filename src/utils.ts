@@ -1,7 +1,7 @@
 import BN from "bn.js";
-import JSBI from "jsbi";
+import { default as JSBI } from "jsbi";
 
-import { TEN } from "./constants";
+import { TEN } from "./constants.js";
 
 /**
  * Bigint-like number.

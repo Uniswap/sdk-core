@@ -1,7 +1,7 @@
-import { Rounding } from "./constants";
-import { NumberFormat } from "./format";
-import { Fraction } from "./fraction";
-import { BigintIsh } from "./utils";
+import { Rounding } from "./constants.js";
+import { NumberFormat } from "./format.js";
+import { Fraction } from "./fraction.js";
+import { BigintIsh } from "./utils.js";
 
 const ONE_HUNDRED = new Fraction(100);
 

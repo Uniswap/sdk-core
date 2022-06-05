@@ -1,13 +1,13 @@
-import Big from "big.js";
-import JSBI from "jsbi";
-import invariant from "tiny-invariant";
+import { default as Big } from "big.js";
+import { default as JSBI } from "jsbi";
+import { default as invariant } from "tiny-invariant";
 
-import { MAX_U64, MAX_U256, Rounding, ZERO } from "./constants";
-import { formatBig, NumberFormat } from "./format";
-import { Fraction } from "./fraction";
-import { Percent } from "./percent";
-import { Token } from "./token";
-import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils";
+import { MAX_U64, MAX_U256, Rounding, ZERO } from "./constants.js";
+import { formatBig, NumberFormat } from "./format.js";
+import { Fraction } from "./fraction.js";
+import { Percent } from "./percent.js";
+import { Token } from "./token.js";
+import { BigintIsh, makeDecimalMultiplier, parseBigintIsh } from "./utils.js";
 
 /**
  * Gets the separator of the provided locale.

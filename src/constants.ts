@@ -1,4 +1,4 @@
-import JSBI from "jsbi";
+import { default as JSBI } from "jsbi";
 
 /**
  * Zero bigint.

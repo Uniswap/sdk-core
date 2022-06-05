@@ -1,6 +1,6 @@
-import JSBI from "jsbi";
+import { default as JSBI } from "jsbi";
 
-import { Percent } from "./percent";
+import { Percent } from "./percent.js";
 
 describe("Percent", () => {
   describe("constructor", () => {

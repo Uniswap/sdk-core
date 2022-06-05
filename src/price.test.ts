@@ -1,9 +1,9 @@
-import JSBI from "jsbi";
+import { default as JSBI } from "jsbi";
 
-import { Price } from "./price";
-import { Token } from "./token";
-import { TokenAmount } from "./tokenAmount";
-import { BigintIsh } from "./utils";
+import { Price } from "./price.js";
+import { Token } from "./token.js";
+import { TokenAmount } from "./tokenAmount.js";
+import { BigintIsh } from "./utils.js";
 
 class MyToken implements Token<MyToken> {
   constructor(readonly symbol: string, readonly decimals: number) {}

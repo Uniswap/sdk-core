@@ -5,11 +5,11 @@
  *  MIT Licence
  */
 
-import Big from "big.js";
-import Decimal from "decimal.js-light";
-import invariant from "tiny-invariant";
+import { default as Big } from "big.js";
+import { default as Decimal } from "decimal.js-light";
+import { default as invariant } from "tiny-invariant";
 
-import { Rounding } from "./constants";
+import { Rounding } from "./constants.js";
 
 export const toSignificantRounding = {
   [Rounding.ROUND_DOWN]: Decimal.ROUND_DOWN,

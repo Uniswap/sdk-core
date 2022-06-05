@@ -1,8 +1,9 @@
 {
-  "include": ["src/"],
+  "include": ["src/", "jest.config.mjs", ".eslintrc.cjs"],
   "compilerOptions": {
     "target": "ES2019",
-    "module": "CommonJS",
+    "module": "ES2020",
+    "moduleResolution": "node16",
     "lib": ["ES2019"],
 
     "strict": true,

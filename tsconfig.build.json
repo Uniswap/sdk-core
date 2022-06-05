@@ -3,6 +3,8 @@
   "include": ["src/"],
   "exclude": ["**/*.test.ts"],
   "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
     "outDir": "dist/cjs/",
     "declaration": true,
     "declarationMap": true,

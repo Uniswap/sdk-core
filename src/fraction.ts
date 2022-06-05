@@ -1,16 +1,16 @@
-import Big from "big.js";
-import Decimal from "decimal.js-light";
-import JSBI from "jsbi";
-import invariant from "tiny-invariant";
+import { default as Big } from "big.js";
+import { default as Decimal } from "decimal.js-light";
+import { default as JSBI } from "jsbi";
+import { default as invariant } from "tiny-invariant";
 
-import { ONE, Rounding, ZERO } from "./constants";
+import { ONE, Rounding, ZERO } from "./constants.js";
 import {
   formatBig,
   formatDecimal,
   NumberFormat,
   toSignificantRounding,
-} from "./format";
-import { BigintIsh, parseBigintIsh } from "./utils";
+} from "./format.js";
+import { BigintIsh, parseBigintIsh } from "./utils.js";
 
 /**
  * Number with an integer numerator and denominator.

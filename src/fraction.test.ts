@@ -1,6 +1,6 @@
-import JSBI from "jsbi";
+import { default as JSBI } from "jsbi";
 
-import { Fraction } from "./fraction";
+import { Fraction } from "./fraction.js";
 
 describe("Fraction", () => {
   describe("#quotient", () => {
