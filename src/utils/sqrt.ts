@@ -1,4 +1,4 @@
-import { BigNumber } from '@ethersproject/bignumber';
+import { BigNumber } from '@ethersproject/bignumber'
 import invariant from 'tiny-invariant'
 
 export const MAX_SAFE_INTEGER = BigNumber.from(Number.MAX_SAFE_INTEGER.toString())
@@ -25,7 +25,10 @@ export function sqrt(value: BigNumber): BigNumber {
   x = value.div(TWO).add(ONE)
   while (x.lt(z)) {
     z = x
-    x = value.div(x).add(x).div(TWO)
+    x = value
+      .div(x)
+      .add(x)
+      .div(TWO)
   }
   return z
 }

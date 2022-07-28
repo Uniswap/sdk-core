@@ -1,4 +1,4 @@
-import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 import invariant from 'tiny-invariant'
 
 import { Rounding } from '../../constants'

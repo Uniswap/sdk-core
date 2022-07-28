@@ -1,4 +1,4 @@
-import { BigNumber } from '@ethersproject/bignumber';
+import { BigNumber } from '@ethersproject/bignumber'
 import { MaxUint256 } from '../../constants'
 import { Ether } from '../ether'
 import { Token } from '../token'

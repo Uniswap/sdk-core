@@ -30,21 +30,23 @@ describe('Fraction', () => {
   })
   describe('#add', () => {
     it('multiples denoms and adds nums', () => {
-      expect(new Fraction(BigNumber.from(1), BigNumber.from(10)).add(new Fraction(BigNumber.from(4), BigNumber.from(12)))).toEqual(
-        new Fraction(BigNumber.from(52), BigNumber.from(120))
-      )
+      expect(
+        new Fraction(BigNumber.from(1), BigNumber.from(10)).add(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+      ).toEqual(new Fraction(BigNumber.from(52), BigNumber.from(120)))
     })
 
     it('same denom', () => {
-      expect(new Fraction(BigNumber.from(1), BigNumber.from(5)).add(new Fraction(BigNumber.from(2), BigNumber.from(5)))).toEqual(
-        new Fraction(BigNumber.from(3), BigNumber.from(5))
-      )
+      expect(
+        new Fraction(BigNumber.from(1), BigNumber.from(5)).add(new Fraction(BigNumber.from(2), BigNumber.from(5)))
+      ).toEqual(new Fraction(BigNumber.from(3), BigNumber.from(5)))
     })
   })
   describe('#subtract', () => {
     it('multiples denoms and subtracts nums', () => {
       expect(
-        new Fraction(BigNumber.from(1), BigNumber.from(10)).subtract(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+        new Fraction(BigNumber.from(1), BigNumber.from(10)).subtract(
+          new Fraction(BigNumber.from(4), BigNumber.from(12))
+        )
       ).toEqual(new Fraction(BigNumber.from(-28), BigNumber.from(120)))
     })
     it('same denom', () => {
@@ -56,52 +58,66 @@ describe('Fraction', () => {
   describe('#lessThan', () => {
     it('correct', () => {
       expect(
-        new Fraction(BigNumber.from(1), BigNumber.from(10)).lessThan(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+        new Fraction(BigNumber.from(1), BigNumber.from(10)).lessThan(
+          new Fraction(BigNumber.from(4), BigNumber.from(12))
+        )
       ).toBe(true)
-      expect(new Fraction(BigNumber.from(1), BigNumber.from(3)).lessThan(new Fraction(BigNumber.from(4), BigNumber.from(12)))).toBe(
-        false
-      )
       expect(
-        new Fraction(BigNumber.from(5), BigNumber.from(12)).lessThan(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+        new Fraction(BigNumber.from(1), BigNumber.from(3)).lessThan(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+      ).toBe(false)
+      expect(
+        new Fraction(BigNumber.from(5), BigNumber.from(12)).lessThan(
+          new Fraction(BigNumber.from(4), BigNumber.from(12))
+        )
       ).toBe(false)
     })
   })
   describe('#equalTo', () => {
     it('correct', () => {
-      expect(new Fraction(BigNumber.from(1), BigNumber.from(10)).equalTo(new Fraction(BigNumber.from(4), BigNumber.from(12)))).toBe(
-        false
-      )
-      expect(new Fraction(BigNumber.from(1), BigNumber.from(3)).equalTo(new Fraction(BigNumber.from(4), BigNumber.from(12)))).toBe(
-        true
-      )
-      expect(new Fraction(BigNumber.from(5), BigNumber.from(12)).equalTo(new Fraction(BigNumber.from(4), BigNumber.from(12)))).toBe(
-        false
-      )
+      expect(
+        new Fraction(BigNumber.from(1), BigNumber.from(10)).equalTo(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+      ).toBe(false)
+      expect(
+        new Fraction(BigNumber.from(1), BigNumber.from(3)).equalTo(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+      ).toBe(true)
+      expect(
+        new Fraction(BigNumber.from(5), BigNumber.from(12)).equalTo(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+      ).toBe(false)
     })
   })
   describe('#greaterThan', () => {
     it('correct', () => {
       expect(
-        new Fraction(BigNumber.from(1), BigNumber.from(10)).greaterThan(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+        new Fraction(BigNumber.from(1), BigNumber.from(10)).greaterThan(
+          new Fraction(BigNumber.from(4), BigNumber.from(12))
+        )
       ).toBe(false)
       expect(
-        new Fraction(BigNumber.from(1), BigNumber.from(3)).greaterThan(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+        new Fraction(BigNumber.from(1), BigNumber.from(3)).greaterThan(
+          new Fraction(BigNumber.from(4), BigNumber.from(12))
+        )
       ).toBe(false)
       expect(
-        new Fraction(BigNumber.from(5), BigNumber.from(12)).greaterThan(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+        new Fraction(BigNumber.from(5), BigNumber.from(12)).greaterThan(
+          new Fraction(BigNumber.from(4), BigNumber.from(12))
+        )
       ).toBe(true)
     })
   })
   describe('#multiplty', () => {
     it('correct', () => {
       expect(
-        new Fraction(BigNumber.from(1), BigNumber.from(10)).multiply(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+        new Fraction(BigNumber.from(1), BigNumber.from(10)).multiply(
+          new Fraction(BigNumber.from(4), BigNumber.from(12))
+        )
       ).toEqual(new Fraction(BigNumber.from(4), BigNumber.from(120)))
       expect(
         new Fraction(BigNumber.from(1), BigNumber.from(3)).multiply(new Fraction(BigNumber.from(4), BigNumber.from(12)))
       ).toEqual(new Fraction(BigNumber.from(4), BigNumber.from(36)))
       expect(
-        new Fraction(BigNumber.from(5), BigNumber.from(12)).multiply(new Fraction(BigNumber.from(4), BigNumber.from(12)))
+        new Fraction(BigNumber.from(5), BigNumber.from(12)).multiply(
+          new Fraction(BigNumber.from(4), BigNumber.from(12))
+        )
       ).toEqual(new Fraction(BigNumber.from(20), BigNumber.from(144)))
     })
   })

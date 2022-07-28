@@ -91,18 +91,12 @@ export class Fraction {
 
   public multiply(other: Fraction | BigNumberish): Fraction {
     const otherParsed = Fraction.tryParseFraction(other)
-    return new Fraction(
-      this.numerator.mul(otherParsed.numerator),
-      this.denominator.mul(otherParsed.denominator)
-    )
+    return new Fraction(this.numerator.mul(otherParsed.numerator), this.denominator.mul(otherParsed.denominator))
   }
 
   public divide(other: Fraction | BigNumberish): Fraction {
     const otherParsed = Fraction.tryParseFraction(other)
-    return new Fraction(
-      this.numerator.mul(otherParsed.denominator),
-      this.denominator.mul(otherParsed.numerator)
-    )
+    return new Fraction(this.numerator.mul(otherParsed.denominator), this.denominator.mul(otherParsed.numerator))
   }
 
   public toSignificant(
