@@ -1,8 +1,8 @@
-import JSBI from 'jsbi'
-import { BigintIsh, Rounding } from '../../constants'
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
+import { Rounding } from '../../constants'
 import { Fraction } from './fraction'
 
-const ONE_HUNDRED = new Fraction(JSBI.BigInt(100))
+const ONE_HUNDRED = new Fraction(BigNumber.from(100))
 
 /**
  * Converts a fraction to a percent
@@ -18,19 +18,19 @@ export class Percent extends Fraction {
    */
   public readonly isPercent: true = true
 
-  add(other: Fraction | BigintIsh): Percent {
+  add(other: Fraction | BigNumberish): Percent {
     return toPercent(super.add(other))
   }
 
-  subtract(other: Fraction | BigintIsh): Percent {
+  subtract(other: Fraction | BigNumberish): Percent {
     return toPercent(super.subtract(other))
   }
 
-  multiply(other: Fraction | BigintIsh): Percent {
+  multiply(other: Fraction | BigNumberish): Percent {
     return toPercent(super.multiply(other))
   }
 
-  divide(other: Fraction | BigintIsh): Percent {
+  divide(other: Fraction | BigNumberish): Percent {
     return toPercent(super.divide(other))
   }
 

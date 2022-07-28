@@ -1,7 +1,7 @@
-import JSBI from 'jsbi'
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import invariant from 'tiny-invariant'
 
-import { BigintIsh, Rounding } from '../../constants'
+import { Rounding } from '../../constants'
 import { Currency } from '../currency'
 import { Fraction } from './fraction'
 import { CurrencyAmount } from './currencyAmount'
@@ -17,10 +17,10 @@ export class Price<TBase extends Currency, TQuote extends Currency> extends Frac
    */
   public constructor(
     ...args:
-      | [TBase, TQuote, BigintIsh, BigintIsh]
+      | [TBase, TQuote, BigNumberish, BigNumberish]
       | [{ baseAmount: CurrencyAmount<TBase>; quoteAmount: CurrencyAmount<TQuote> }]
   ) {
-    let baseCurrency: TBase, quoteCurrency: TQuote, denominator: BigintIsh, numerator: BigintIsh
+    let baseCurrency: TBase, quoteCurrency: TQuote, denominator: BigNumberish, numerator: BigNumberish
 
     if (args.length === 4) {
       ;[baseCurrency, quoteCurrency, denominator, numerator] = args
@@ -38,8 +38,8 @@ export class Price<TBase extends Currency, TQuote extends Currency> extends Frac
     this.baseCurrency = baseCurrency
     this.quoteCurrency = quoteCurrency
     this.scalar = new Fraction(
-      JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(baseCurrency.decimals)),
-      JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(quoteCurrency.decimals))
+      BigNumber.from(10).pow(BigNumber.from(baseCurrency.decimals)),
+      BigNumber.from(10).pow(BigNumber.from(quoteCurrency.decimals))
     )
   }
 

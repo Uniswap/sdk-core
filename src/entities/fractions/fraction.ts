@@ -1,10 +1,10 @@
-import JSBI from 'jsbi'
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber'
 import invariant from 'tiny-invariant'
 import _Decimal from 'decimal.js-light'
 import _Big, { RoundingMode } from 'big.js'
 import toFormat from 'toformat'
 
-import { BigintIsh, Rounding } from '../../constants'
+import { Rounding } from '../../constants'
 
 const Decimal = toFormat(_Decimal)
 const Big = toFormat(_Big)
@@ -22,101 +22,86 @@ const toFixedRounding = {
 }
 
 export class Fraction {
-  public readonly numerator: JSBI
-  public readonly denominator: JSBI
+  public readonly numerator: BigNumber
+  public readonly denominator: BigNumber
 
-  public constructor(numerator: BigintIsh, denominator: BigintIsh = JSBI.BigInt(1)) {
-    this.numerator = JSBI.BigInt(numerator)
-    this.denominator = JSBI.BigInt(denominator)
+  public constructor(numerator: BigNumberish, denominator: BigNumberish = 1) {
+    this.numerator = BigNumber.from(numerator)
+    this.denominator = BigNumber.from(denominator)
   }
 
-  private static tryParseFraction(fractionish: BigintIsh | Fraction): Fraction {
-    if (fractionish instanceof JSBI || typeof fractionish === 'number' || typeof fractionish === 'string')
+  private static tryParseFraction(fractionish: BigNumberish | Fraction): Fraction {
+    if (fractionish instanceof BigNumber || typeof fractionish === 'number' || typeof fractionish === 'string')
       return new Fraction(fractionish)
 
-    if ('numerator' in fractionish && 'denominator' in fractionish) return fractionish
+    if (fractionish instanceof Fraction) return fractionish
     throw new Error('Could not parse fraction')
   }
 
   // performs floor division
-  public get quotient(): JSBI {
-    return JSBI.divide(this.numerator, this.denominator)
+  public get quotient(): BigNumber {
+    return this.numerator.div(this.denominator)
   }
 
   // remainder after floor division
   public get remainder(): Fraction {
-    return new Fraction(JSBI.remainder(this.numerator, this.denominator), this.denominator)
+    return new Fraction(this.numerator.mod(this.denominator), this.denominator)
   }
 
   public invert(): Fraction {
     return new Fraction(this.denominator, this.numerator)
   }
 
-  public add(other: Fraction | BigintIsh): Fraction {
+  public add(other: Fraction | BigNumberish): Fraction {
     const otherParsed = Fraction.tryParseFraction(other)
-    if (JSBI.equal(this.denominator, otherParsed.denominator)) {
-      return new Fraction(JSBI.add(this.numerator, otherParsed.numerator), this.denominator)
+    if (this.denominator.eq(otherParsed.denominator)) {
+      return new Fraction(this.numerator.add(otherParsed.numerator), this.denominator)
     }
     return new Fraction(
-      JSBI.add(
-        JSBI.multiply(this.numerator, otherParsed.denominator),
-        JSBI.multiply(otherParsed.numerator, this.denominator)
-      ),
-      JSBI.multiply(this.denominator, otherParsed.denominator)
+      this.numerator.mul(otherParsed.denominator).add(otherParsed.numerator.mul(this.denominator)),
+      this.denominator.mul(otherParsed.denominator)
     )
   }
 
-  public subtract(other: Fraction | BigintIsh): Fraction {
+  public subtract(other: Fraction | BigNumberish): Fraction {
     const otherParsed = Fraction.tryParseFraction(other)
-    if (JSBI.equal(this.denominator, otherParsed.denominator)) {
-      return new Fraction(JSBI.subtract(this.numerator, otherParsed.numerator), this.denominator)
+    if (this.denominator.eq(otherParsed.denominator)) {
+      return new Fraction(this.numerator.sub(otherParsed.numerator), this.denominator)
     }
     return new Fraction(
-      JSBI.subtract(
-        JSBI.multiply(this.numerator, otherParsed.denominator),
-        JSBI.multiply(otherParsed.numerator, this.denominator)
-      ),
-      JSBI.multiply(this.denominator, otherParsed.denominator)
+      this.numerator.mul(otherParsed.denominator).sub(otherParsed.numerator.mul(this.denominator)),
+      this.denominator.mul(otherParsed.denominator)
     )
   }
 
-  public lessThan(other: Fraction | BigintIsh): boolean {
+  public lessThan(other: Fraction | BigNumberish): boolean {
     const otherParsed = Fraction.tryParseFraction(other)
-    return JSBI.lessThan(
-      JSBI.multiply(this.numerator, otherParsed.denominator),
-      JSBI.multiply(otherParsed.numerator, this.denominator)
-    )
+    return this.numerator.mul(otherParsed.denominator).lt(otherParsed.numerator.mul(this.denominator))
   }
 
-  public equalTo(other: Fraction | BigintIsh): boolean {
+  public equalTo(other: Fraction | BigNumberish): boolean {
     const otherParsed = Fraction.tryParseFraction(other)
-    return JSBI.equal(
-      JSBI.multiply(this.numerator, otherParsed.denominator),
-      JSBI.multiply(otherParsed.numerator, this.denominator)
-    )
+    return this.numerator.mul(otherParsed.denominator).eq(otherParsed.numerator.mul(this.denominator))
   }
 
-  public greaterThan(other: Fraction | BigintIsh): boolean {
+  public greaterThan(other: Fraction | BigNumberish): boolean {
     const otherParsed = Fraction.tryParseFraction(other)
-    return JSBI.greaterThan(
-      JSBI.multiply(this.numerator, otherParsed.denominator),
-      JSBI.multiply(otherParsed.numerator, this.denominator)
-    )
+    return this.numerator.mul(otherParsed.denominator).gt(otherParsed.numerator.mul(this.denominator))
   }
 
-  public multiply(other: Fraction | BigintIsh): Fraction {
+  public multiply(other: Fraction | BigNumberish): Fraction {
     const otherParsed = Fraction.tryParseFraction(other)
     return new Fraction(
-      JSBI.multiply(this.numerator, otherParsed.numerator),
-      JSBI.multiply(this.denominator, otherParsed.denominator)
+      this.numerator.mul(otherParsed.numerator),
+      this.denominator.mul(otherParsed.denominator)
     )
   }
 
-  public divide(other: Fraction | BigintIsh): Fraction {
+  public divide(other: Fraction | BigNumberish): Fraction {
     const otherParsed = Fraction.tryParseFraction(other)
     return new Fraction(
-      JSBI.multiply(this.numerator, otherParsed.denominator),
-      JSBI.multiply(this.denominator, otherParsed.numerator)
+      this.numerator.mul(otherParsed.denominator),
+      this.denominator.mul(otherParsed.numerator)
     )
   }
 

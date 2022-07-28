@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@ethersproject/address": "^5.0.2",
+    "@ethersproject/bignumber": "^5.6.2",
     "big.js": "^5.2.2",
     "decimal.js-light": "^2.5.0",
-    "jsbi": "^3.1.4",
     "tiny-invariant": "^1.1.0",
     "toformat": "^2.0.0"
   },
