@@ -13,7 +13,7 @@ export function validateAndParseAddress(address: string): string {
 }
 
 // Checks a string starts with 0x, is 42 characters long and contains only hex characters after 0x
-const startsWith0xLen42HexRegex = /^(0x)?[0-9a-fA-F]{40}$/
+const startsWith0xLen42HexRegex = /^0x[0-9a-fA-F]{40}$/
 
 /**
  * Checks if an address is valid by checking 0x prefix, length === 42 and hex encoding.

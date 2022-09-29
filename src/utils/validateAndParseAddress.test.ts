@@ -39,9 +39,9 @@ describe('#checkValidAddress', () => {
     )
   })
 
-  it('throws if it does not startis with 0x', () => {
-    expect(() => checkValidAddress('AA5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f')).toThrow(
-      'AA5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f is not a valid address.'
+  it('throws if it does not start with 0x', () => {
+    expect(() => checkValidAddress('5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f')).toThrow(
+      '5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f is not a valid address.'
     )
   })
 
