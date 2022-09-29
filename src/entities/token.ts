@@ -15,9 +15,23 @@ export class Token extends BaseCurrency {
    */
   public readonly address: string
 
-  public constructor(chainId: number, address: string, decimals: number, symbol?: string, name?: string) {
+  /**
+   * 
+   * @param chainId {@link BaseCurrency}
+   * @param address The contract address on the chain on which this token lives
+   * @param decimals {@link BaseCurrency}
+   * @param symbol {@link BaseCurrency}
+   * @param name {@link BaseCurrency}
+   * @param bypassValidation If true it bypasses address validation in the constructor. 
+   *                         Use this if you're working with valid addresses to avoid the overhead of checksum validation.
+   */
+  public constructor(chainId: number, address: string, decimals: number, symbol?: string, name?: string, bypassValidation?: boolean) {
     super(chainId, decimals, symbol, name)
-    this.address = validateAndParseAddress(address)
+    if (bypassValidation) {
+      this.address = address
+    } else {
+      this.address = validateAndParseAddress(address)
+    }
   }
 
   /**

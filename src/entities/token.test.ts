@@ -21,6 +21,23 @@ describe('Token', () => {
     })
   })
 
+  describe('#constructor', () => {
+    it('does not fail with invalid address if bypass is true', () => {
+      expect(new Token(3, '0xhello00000000000000000000000000000000002', 18, undefined, undefined, true).address).toBe(
+        '0xhello00000000000000000000000000000000002'
+      )
+    })
+    it('fails with negative decimals', () => {
+      expect(() => new Token(3, ADDRESS_ONE, -1).address).toThrow('DECIMALS')
+    })
+    it('fails with 256 decimals', () => {
+      expect(() => new Token(3, ADDRESS_ONE, 256).address).toThrow('DECIMALS')
+    })
+    it('fails with non-integer decimals', () => {
+      expect(() => new Token(3, ADDRESS_ONE, 1.5).address).toThrow('DECIMALS')
+    })
+  })
+
   describe('#equals', () => {
     it('fails if address differs', () => {
       expect(new Token(1, ADDRESS_ONE, 18).equals(new Token(1, ADDRESS_TWO, 18))).toBe(false)
