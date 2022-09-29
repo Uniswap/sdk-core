@@ -16,7 +16,7 @@ export class Token extends BaseCurrency {
   public readonly address: string
 
   /**
-   * 
+   *
    * @param chainId {@link BaseCurrency#chainId}
    * @param address The contract address on the chain on which this token lives
    * @param decimals {@link BaseCurrency#decimals}
@@ -24,7 +24,14 @@ export class Token extends BaseCurrency {
    * @param name {@link BaseCurrency#name}
    * @param bypassChecksum If true it only checks for length === 42, startsWith 0x and contains only hex characters
    */
-  public constructor(chainId: number, address: string, decimals: number, symbol?: string, name?: string, bypassChecksum?: boolean) {
+  public constructor(
+    chainId: number,
+    address: string,
+    decimals: number,
+    symbol?: string,
+    name?: string,
+    bypassChecksum?: boolean
+  ) {
     super(chainId, decimals, symbol, name)
     if (bypassChecksum) {
       this.address = checkValidAddress(address)
