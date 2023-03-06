@@ -75,7 +75,7 @@ describe('Token', () => {
 
     it('true even if one token is checksummed and the other is not', () => {
       const tokenA = new Token(1, DAI_MAINNET, 18, 'DAI', undefined, false)
-      const tokenB  = new Token(1, DAI_MAINNET.toLowerCase(), 18, 'DAI', undefined, true)
+      const tokenB = new Token(1, DAI_MAINNET.toLowerCase(), 18, 'DAI', undefined, true)
       expect(tokenA.equals(tokenB)).toBe(true)
     })
   })
