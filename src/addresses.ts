@@ -22,8 +22,7 @@ function constructSameAddressMap(address: string, additionalNetworks: ChainId[] 
   }, {})
 }
 
-export const UNI_ADDRESSES: AddressMap = constructSameAddressMap('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984',
-[
+export const UNI_ADDRESSES: AddressMap = constructSameAddressMap('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', [
   ChainId.ROPSTEN,
   ChainId.RINKEBY,
   ChainId.KOVAN,
@@ -32,7 +31,7 @@ export const UNI_ADDRESSES: AddressMap = constructSameAddressMap('0x1f9840a85d5a
   ChainId.ARBITRUM_ONE,
   ChainId.ARBITRUM_RINKEBY,
   ChainId.POLYGON,
-  ChainId.POLYGON_MUMBAI,
+  ChainId.POLYGON_MUMBAI
 ])
 
 export const UNISWAP_NFT_AIRDROP_CLAIM_ADDRESS = '0x8B799381ac40b838BBA4131ffB26197C432AFe78'
@@ -239,7 +238,7 @@ export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = SUPPORTED_CHAINS.redu
 
 export const SWAP_ROUTER_02_ADDRESSES = (chainId: number) => {
   if (chainId == ChainId.BNB) {
-    return CHAIN_TO_ADDRESSES_MAP[chainId].swapRouter02Address;
+    return CHAIN_TO_ADDRESSES_MAP[chainId].swapRouter02Address
   }
-  return '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45';
-};
+  return '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'
+}
