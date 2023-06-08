@@ -36,15 +36,15 @@ const DEFAULT_ADDRESSES: ChainAddresses = {
   multicallAddress: '0x1F98415757620B543A52E61c46B32eB19261F984',
   quoterAddress: '0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6',
   v3MigratorAddress: '0xA5644E29708357803b5A882D272c41cC0dF92B34',
-  nonfungiblePositionManagerAddress: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88',
+  nonfungiblePositionManagerAddress: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88'
 }
 const MAINNET_ADDRESSES: ChainAddresses = {
   ...DEFAULT_ADDRESSES,
-  v1MixedRouteQuoterAddress: '0x84E44095eeBfEC7793Cd7d5b57B7e401D7f1cA2E',
+  v1MixedRouteQuoterAddress: '0x84E44095eeBfEC7793Cd7d5b57B7e401D7f1cA2E'
 }
 const GOERLI_ADDRESSES: ChainAddresses = {
   ...DEFAULT_ADDRESSES,
-  v1MixedRouteQuoterAddress: '0xBa60b6e6fF25488308789E6e0A65D838be34194e',
+  v1MixedRouteQuoterAddress: '0xBa60b6e6fF25488308789E6e0A65D838be34194e'
 }
 const RINKEBY_ADDRESSES: ChainAddresses = MAINNET_ADDRESSES
 const ROPSTEN_ADDRESSES: ChainAddresses = MAINNET_ADDRESSES
@@ -53,7 +53,7 @@ const OPTIMISM_ADDRESSES: ChainAddresses = DEFAULT_ADDRESSES
 const ARBITRUM_ONE_ADDRESSES: ChainAddresses = {
   ...DEFAULT_ADDRESSES,
   multicallAddress: '0xadF885960B47eA2CD9B55E6DAc6B42b7Cb2806dB',
-  tickLensAddress: '0xbfd8137f7d1516D3ea5cA83523914859ec47F573',
+  tickLensAddress: '0xbfd8137f7d1516D3ea5cA83523914859ec47F573'
 }
 const POLYGON_ADDRESSES: ChainAddresses = DEFAULT_ADDRESSES
 
@@ -64,7 +64,7 @@ const CELO_ADDRESSES: ChainAddresses = {
   quoterAddress: '0x82825d0554fA07f7FC52Ab63c961F330fdEFa8E8',
   v3MigratorAddress: '0x3cFd4d48EDfDCC53D3f173F596f621064614C582',
   nonfungiblePositionManagerAddress: '0x3d79EdAaBC0EaB6F08ED885C05Fc0B014290D95A',
-  tickLensAddress: '0x5f115D9113F88e0a0Db1b5033D90D4a9690AcD3D',
+  tickLensAddress: '0x5f115D9113F88e0a0Db1b5033D90D4a9690AcD3D'
 }
 
 // BNB v3 addresses
@@ -74,7 +74,7 @@ const BNB_ADDRESSES: ChainAddresses = {
   quoterAddress: '0x78D78E420Da98ad378D7799bE8f4AF69033EB077',
   v3MigratorAddress: '0x32681814957e0C13117ddc0c2aba232b5c9e760f',
   nonfungiblePositionManagerAddress: '0x7b8A01B39D58278b5DE7e48c8449c9f4F5170613',
-  tickLensAddress: '0xD9270014D396281579760619CCf4c3af0501A47C',
+  tickLensAddress: '0xD9270014D396281579760619CCf4c3af0501A47C'
 }
 
 // optimism goerli addresses
@@ -84,7 +84,7 @@ const OPTIMISM_GOERLI_ADDRESSES: ChainAddresses = {
   quoterAddress: '0x9569CbA925c8ca2248772A9A4976A516743A246F',
   v3MigratorAddress: '0xf6c55fBe84B1C8c3283533c53F51bC32F5C7Aba8',
   nonfungiblePositionManagerAddress: '0x39Ca85Af2F383190cBf7d7c41ED9202D27426EF6',
-  tickLensAddress: '0xe6140Bd164b63E8BfCfc40D5dF952f83e171758e',
+  tickLensAddress: '0xe6140Bd164b63E8BfCfc40D5dF952f83e171758e'
 }
 
 // arbitrum goerli v3 addresses
@@ -94,7 +94,7 @@ const ARBITRUM_GOERLI_ADDRESSES: ChainAddresses = {
   quoterAddress: '0x1dd92b83591781D0C6d98d07391eea4b9a6008FA',
   v3MigratorAddress: '0xA815919D2584Ac3F76ea9CB62E6Fd40a43BCe0C3',
   nonfungiblePositionManagerAddress: '0x622e4726a167799826d1E1D150b076A7725f5D81',
-  tickLensAddress: '0xb52429333da969a0C79a60930a4Bf0020E5D1DE8',
+  tickLensAddress: '0xb52429333da969a0C79a60930a4Bf0020E5D1DE8'
 }
 
 // sepolia v3 addresses
@@ -104,7 +104,7 @@ const SEPOLIA_ADDRESSES: ChainAddresses = {
   quoterAddress: '0xEd1f6473345F45b75F8179591dd5bA1888cf2FB3',
   v3MigratorAddress: '0x729004182cF005CEC8Bd85df140094b6aCbe8b15',
   nonfungiblePositionManagerAddress: '0x1238536071E1c677A632429e3655c799b22cDA52',
-  tickLensAddress: '0xd7f33bcdb21b359c8ee6f0251d30e94832baad07',
+  tickLensAddress: '0xd7f33bcdb21b359c8ee6f0251d30e94832baad07'
 }
 
 export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses> = {
@@ -124,7 +124,7 @@ export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses>
   [ChainId.BNB]: BNB_ADDRESSES,
   [ChainId.OPTIMISM_GOERLI]: OPTIMISM_GOERLI_ADDRESSES,
   [ChainId.ARBITRUM_GOERLI]: ARBITRUM_GOERLI_ADDRESSES,
-  [ChainId.SEPOLIA]: SEPOLIA_ADDRESSES,
+  [ChainId.SEPOLIA]: SEPOLIA_ADDRESSES
 }
 
 /* V3 Contract Addresses */
@@ -133,7 +133,7 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
   ...SUPPORTED_CHAINS.reduce<AddressMap>(
     (memo, chainId) => (memo[chainId] = CHAIN_TO_ADDRESSES_MAP[chainId].v3CoreFactoryAddress),
     {}
-  ),
+  )
 }
 
 export const V3_MIGRATOR_ADDRESSES: AddressMap = {
@@ -143,14 +143,14 @@ export const V3_MIGRATOR_ADDRESSES: AddressMap = {
       memo[chainId] = v3MigratorAddress
     }
     return memo
-  }, {}),
+  }, {})
 }
 
 export const MULTICALL_ADDRESS: AddressMap = {
   ...SUPPORTED_CHAINS.reduce<AddressMap>(
     (memo, chainId) => (memo[chainId] = CHAIN_TO_ADDRESSES_MAP[chainId].multicallAddress),
     {}
-  ),
+  )
 }
 
 /**
@@ -163,30 +163,30 @@ export const GOVERNANCE_ALPHA_V0_ADDRESSES: AddressMap = constructSameAddressMap
  * The older V1 governance address
  */
 export const GOVERNANCE_ALPHA_V1_ADDRESSES: AddressMap = {
-  [ChainId.MAINNET]: '0xC4e172459f1E7939D522503B81AFAaC1014CE6F6',
+  [ChainId.MAINNET]: '0xC4e172459f1E7939D522503B81AFAaC1014CE6F6'
 }
 /**
  * The latest governor bravo that is currently admin of timelock
  */
 export const GOVERNANCE_BRAVO_ADDRESSES: AddressMap = {
-  [ChainId.MAINNET]: '0x408ED6354d4973f66138C91495F2f2FCbd8724C3',
+  [ChainId.MAINNET]: '0x408ED6354d4973f66138C91495F2f2FCbd8724C3'
 }
 
 export const TIMELOCK_ADDRESS: AddressMap = constructSameAddressMap('0x1a9C8182C09F50C8318d769245beA52c32BE35BC')
 
 export const MERKLE_DISTRIBUTOR_ADDRESS: AddressMap = {
-  [ChainId.MAINNET]: '0x090D4613473dEE047c3f2706764f49E0821D256e',
+  [ChainId.MAINNET]: '0x090D4613473dEE047c3f2706764f49E0821D256e'
 }
 
 export const ARGENT_WALLET_DETECTOR_ADDRESS: AddressMap = {
-  [ChainId.MAINNET]: '0xeca4B0bDBf7c55E9b7925919d03CbF8Dc82537E8',
+  [ChainId.MAINNET]: '0xeca4B0bDBf7c55E9b7925919d03CbF8Dc82537E8'
 }
 
 export const QUOTER_ADDRESSES: AddressMap = {
   ...SUPPORTED_CHAINS.reduce<AddressMap>(
     (memo, chainId) => (memo[chainId] = CHAIN_TO_ADDRESSES_MAP[chainId].quoterAddress),
     {}
-  ),
+  )
 }
 
 export const NONFUNGIBLE_POSITION_MANAGER_ADDRESSES: AddressMap = {
@@ -196,7 +196,7 @@ export const NONFUNGIBLE_POSITION_MANAGER_ADDRESSES: AddressMap = {
       memo[chainId] = nonfungiblePositionManagerAddress
     }
     return memo
-  }, {}),
+  }, {})
 }
 
 export const ENS_REGISTRAR_ADDRESSES: AddressMap = {
@@ -204,7 +204,7 @@ export const ENS_REGISTRAR_ADDRESSES: AddressMap = {
 }
 
 export const SOCKS_CONTROLLER_ADDRESSES: AddressMap = {
-  [ChainId.MAINNET]: '0x65770b5283117639760beA3F867b69b3697a91dd',
+  [ChainId.MAINNET]: '0x65770b5283117639760beA3F867b69b3697a91dd'
 }
 
 export const TICK_LENS_ADDRESSES: AddressMap = {
@@ -214,7 +214,7 @@ export const TICK_LENS_ADDRESSES: AddressMap = {
       memo[chainId] = tickLensAddress
     }
     return memo
-  }, {}),
+  }, {})
 }
 
 export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = SUPPORTED_CHAINS.reduce<AddressMap>((memo, chainId) => {
