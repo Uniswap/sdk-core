@@ -23,13 +23,8 @@ function constructSameAddressMap(address: string, additionalNetworks: ChainId[] 
 }
 
 export const UNI_ADDRESSES: AddressMap = constructSameAddressMap('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', [
-  ChainId.ROPSTEN,
-  ChainId.RINKEBY,
-  ChainId.KOVAN,
   ChainId.OPTIMISM,
-  ChainId.OPTIMISTIC_KOVAN,
   ChainId.ARBITRUM_ONE,
-  ChainId.ARBITRUM_RINKEBY,
   ChainId.POLYGON,
   ChainId.POLYGON_MUMBAI,
   ChainId.SEPOLIA
@@ -58,9 +53,7 @@ const GOERLI_ADDRESSES: ChainAddresses = {
   ...DEFAULT_ADDRESSES,
   v1MixedRouteQuoterAddress: '0xBa60b6e6fF25488308789E6e0A65D838be34194e'
 }
-const RINKEBY_ADDRESSES: ChainAddresses = MAINNET_ADDRESSES
-const ROPSTEN_ADDRESSES: ChainAddresses = MAINNET_ADDRESSES
-const KOVAN_ADDRESSES: ChainAddresses = DEFAULT_ADDRESSES
+
 const OPTIMISM_ADDRESSES: ChainAddresses = DEFAULT_ADDRESSES
 const ARBITRUM_ONE_ADDRESSES: ChainAddresses = {
   ...DEFAULT_ADDRESSES,
@@ -122,13 +115,8 @@ const SEPOLIA_ADDRESSES: ChainAddresses = {
 
 export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses> = {
   [ChainId.MAINNET]: MAINNET_ADDRESSES,
-  [ChainId.RINKEBY]: RINKEBY_ADDRESSES,
-  [ChainId.ROPSTEN]: ROPSTEN_ADDRESSES,
-  [ChainId.KOVAN]: KOVAN_ADDRESSES,
   [ChainId.OPTIMISM]: OPTIMISM_ADDRESSES,
-  [ChainId.OPTIMISTIC_KOVAN]: KOVAN_ADDRESSES,
   [ChainId.ARBITRUM_ONE]: ARBITRUM_ONE_ADDRESSES,
-  [ChainId.ARBITRUM_RINKEBY]: ARBITRUM_ONE_ADDRESSES,
   [ChainId.POLYGON]: POLYGON_ADDRESSES,
   [ChainId.POLYGON_MUMBAI]: POLYGON_ADDRESSES,
   [ChainId.GOERLI]: GOERLI_ADDRESSES,
