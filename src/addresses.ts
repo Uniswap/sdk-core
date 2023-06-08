@@ -1,4 +1,4 @@
-import { ChainId, SUPPORTED_CHAINS, SupportedChainsType } from './constants'
+import { ChainId, SUPPORTED_CHAINS, SupportedChainsType } from './chains'
 
 type AddressMap = { [chainId: number]: string }
 
@@ -9,7 +9,7 @@ type ChainAddresses = {
   v3MigratorAddress?: string
   nonfungiblePositionManagerAddress?: string
   tickLensAddress?: string
-  v2SwapRouterAddress?: string
+  swapRouter02Address?: string
   v1MixedRouteQuoterAddress?: string
 }
 
@@ -22,13 +22,25 @@ function constructSameAddressMap(address: string, additionalNetworks: ChainId[] 
   }, {})
 }
 
-export const UNI_ADDRESS: AddressMap = constructSameAddressMap('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984')
+export const UNI_ADDRESSES: AddressMap = constructSameAddressMap('0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984',
+[
+  ChainId.ROPSTEN,
+  ChainId.RINKEBY,
+  ChainId.KOVAN,
+  ChainId.OPTIMISM,
+  ChainId.OPTIMISTIC_KOVAN,
+  ChainId.ARBITRUM_ONE,
+  ChainId.ARBITRUM_RINKEBY,
+  ChainId.POLYGON,
+  ChainId.POLYGON_MUMBAI,
+])
 
 export const UNISWAP_NFT_AIRDROP_CLAIM_ADDRESS = '0x8B799381ac40b838BBA4131ffB26197C432AFe78'
 
 export const V2_FACTORY_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
 export const V2_FACTORY_ADDRESSES: AddressMap = constructSameAddressMap(V2_FACTORY_ADDRESS)
-export const V2_ROUTER_ADDRESS: AddressMap = constructSameAddressMap('0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D')
+export const V2_ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
+export const V2_ROUTER_ADDRESSES: AddressMap = constructSameAddressMap(V2_ROUTER_ADDRESS)
 
 // Networks that share most of the same addresses i.e. Mainnet, Goerli, Optimism, Arbitrum, Polygon
 const DEFAULT_ADDRESSES: ChainAddresses = {
@@ -74,7 +86,8 @@ const BNB_ADDRESSES: ChainAddresses = {
   quoterAddress: '0x78D78E420Da98ad378D7799bE8f4AF69033EB077',
   v3MigratorAddress: '0x32681814957e0C13117ddc0c2aba232b5c9e760f',
   nonfungiblePositionManagerAddress: '0x7b8A01B39D58278b5DE7e48c8449c9f4F5170613',
-  tickLensAddress: '0xD9270014D396281579760619CCf4c3af0501A47C'
+  tickLensAddress: '0xD9270014D396281579760619CCf4c3af0501A47C',
+  swapRouter02Address: '0xB971eF87ede563556b2ED4b1C0b0019111Dd85d2'
 }
 
 // optimism goerli addresses
@@ -145,7 +158,7 @@ export const V3_MIGRATOR_ADDRESSES: AddressMap = {
   }, {})
 }
 
-export const MULTICALL_ADDRESS: AddressMap = {
+export const MULTICALL_ADDRESSES: AddressMap = {
   ...SUPPORTED_CHAINS.reduce<AddressMap>(
     (memo, chainId) => (memo[chainId] = CHAIN_TO_ADDRESSES_MAP[chainId].multicallAddress),
     {}
@@ -223,3 +236,10 @@ export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = SUPPORTED_CHAINS.redu
   }
   return memo
 }, {})
+
+export const SWAP_ROUTER_02_ADDRESSES = (chainId: number) => {
+  if (chainId == ChainId.BNB) {
+    return CHAIN_TO_ADDRESSES_MAP[chainId].swapRouter02Address;
+  }
+  return '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45';
+};
