@@ -32,7 +32,7 @@ export const UNI_ADDRESSES: AddressMap = constructSameAddressMap('0x1f9840a85d5a
   ChainId.ARBITRUM_RINKEBY,
   ChainId.POLYGON,
   ChainId.POLYGON_MUMBAI,
-  ChainId.SEPOLIA,
+  ChainId.SEPOLIA
 ])
 
 export const UNISWAP_NFT_AIRDROP_CLAIM_ADDRESS = '0x8B799381ac40b838BBA4131ffB26197C432AFe78'
