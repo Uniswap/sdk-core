@@ -121,7 +121,7 @@ const AVALANCHE_ADDRESSES: ChainAddresses = {
   v3MigratorAddress: '0x44f5f1f5E452ea8d29C890E8F6e893fC0f1f0f97',
   nonfungiblePositionManagerAddress: '0x655C406EBFa14EE2006250925e54ec43AD184f8B',
   tickLensAddress: '0xEB9fFC8bf81b4fFd11fb6A63a6B0f098c6e21950',
-  swapRouter02Address: '0xbb00FF08d01D300023C629E8fFfFcb65A5a578cE',
+  swapRouter02Address: '0xbb00FF08d01D300023C629E8fFfFcb65A5a578cE'
 }
 
 export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses> = {
@@ -137,7 +137,7 @@ export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses>
   [ChainId.OPTIMISM_GOERLI]: OPTIMISM_GOERLI_ADDRESSES,
   [ChainId.ARBITRUM_GOERLI]: ARBITRUM_GOERLI_ADDRESSES,
   [ChainId.SEPOLIA]: SEPOLIA_ADDRESSES,
-  [ChainId.AVALANCHE]: AVALANCHE_ADDRESSES,
+  [ChainId.AVALANCHE]: AVALANCHE_ADDRESSES
 }
 
 /* V3 Contract Addresses */
