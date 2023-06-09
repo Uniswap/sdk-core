@@ -12,8 +12,7 @@ export enum ChainId {
   CELO_ALFAJORES = 44787,
   GNOSIS = 100,
   MOONBEAM = 1284,
-  BNB = 56,
-  AVALANCHE = 43114
+  BNB = 56
 }
 
 export const SUPPORTED_CHAINS = [
@@ -28,8 +27,7 @@ export const SUPPORTED_CHAINS = [
   ChainId.SEPOLIA,
   ChainId.CELO_ALFAJORES,
   ChainId.CELO,
-  ChainId.BNB,
-  ChainId.AVALANCHE
+  ChainId.BNB
 ] as const
 export type SupportedChainsType = typeof SUPPORTED_CHAINS[number]
 
@@ -40,6 +38,5 @@ export enum NativeCurrencyName {
   CELO = 'CELO',
   GNOSIS = 'XDAI',
   MOONBEAM = 'GLMR',
-  BNB = 'BNB',
-  AVAX = 'AVAX'
+  BNB = 'BNB'
 }
