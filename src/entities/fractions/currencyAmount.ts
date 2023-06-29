@@ -43,7 +43,6 @@ export class CurrencyAmount<T extends Currency> extends Fraction {
   protected constructor(currency: T, numerator: BigintIsh, denominator?: BigintIsh) {
     super(numerator, denominator)
     invariant(this.quotientBigInt <= MaxUint256BigInt, 'AMOUNT')
-    invariant(this.quotientBigInt)
     this.currency = currency
     this._decimalScale = 10n ** BigInt(currency.decimals)
   }

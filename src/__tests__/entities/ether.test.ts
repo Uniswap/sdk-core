@@ -1,4 +1,4 @@
-import { Ether } from './ether'
+import { Ether } from 'src/entities/ether'
 
 describe('Ether', () => {
   it('static constructor uses cache', () => {
