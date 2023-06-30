@@ -17,8 +17,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "prepublishOnly": "tsc",
-    "postinstall": "tsc"
+    "prepublishOnly": "tsc"
   },
   "dependencies": {
     "@ethersproject/address": "^5.0.2",
