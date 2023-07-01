@@ -2,7 +2,6 @@ import JSBI from 'jsbi'
 
 // exports for external consumption
 export type BigintIsh = bigint | JSBI | string | number
-export type BigintIshNonJSBI = bigint | string | number
 
 export enum TradeType {
   EXACT_INPUT,
