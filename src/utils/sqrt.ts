@@ -10,20 +10,20 @@ export const MAX_SAFE_INTEGER_BIGINT = BigInt(Number.MAX_SAFE_INTEGER)
  */
 export function sqrt<T extends JSBI | bigint>(value: T): T {
   let bigIntValue: bigint
-  if (value instanceof JSBI) {
-    bigIntValue = BigInt(value.toString(10))
-  } else {
+  if (typeof value === 'bigint') {
     bigIntValue = value
+  } else {
+    bigIntValue = BigInt(value.toString(10))
   }
 
   invariant(bigIntValue >= 0n, 'NEGATIVE')
 
   // rely on built in sqrt if possible
   if (bigIntValue < MAX_SAFE_INTEGER_BIGINT) {
-    if (value instanceof JSBI) {
-      return JSBI.BigInt(Math.floor(Math.sqrt(Number(bigIntValue)))) as T
-    } else {
+    if (typeof value === 'bigint') {
       return BigInt(Math.floor(Math.sqrt(Number(bigIntValue)))) as T
+    } else {
+      return JSBI.BigInt(Math.floor(Math.sqrt(Number(bigIntValue)))) as T
     }
   }
 
@@ -36,9 +36,9 @@ export function sqrt<T extends JSBI | bigint>(value: T): T {
     x = (bigIntValue / x + x) / 2n
   }
 
-  if (value instanceof JSBI) {
-    return JSBI.BigInt(z.toString(10)) as T
-  } else {
+  if (typeof value === 'bigint') {
     return z as T
+  } else {
+    return JSBI.BigInt(z.toString(10)) as T
   }
 }

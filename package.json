@@ -13,7 +13,6 @@
     "uniswap",
     "ethereum"
   ],
-  "module": "dist/sdk-core.esm.js",
   "scripts": {
     "build": "tsc",
     "test": "jest",

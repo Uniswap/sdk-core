@@ -32,22 +32,14 @@ export class Fraction {
   public readonly _denominator: bigint
 
   public constructor(numerator: BigintIsh, denominator: BigintIsh = 1n) {
-    if (numerator instanceof JSBI) {
-      this._numerator = BigInt(numerator.toString(10))
-    } else {
-      this._numerator = BigInt(numerator as BigintIshNonJSBI)
-    }
+    this._numerator = BigInt(numerator.toString(10))
 
-    if (denominator instanceof JSBI) {
-      this._denominator = BigInt(denominator.toString(10))
-    } else {
-      this._denominator = BigInt(denominator as BigintIshNonJSBI)
-    }
+    this._denominator = BigInt(denominator.toString(10))
   }
 
   private static tryParseFraction(fractionish: BigintIsh | Fraction): Fraction {
     if (
-      fractionish instanceof JSBI ||
+      (typeof fractionish === 'object' && fractionish.constructor === JSBI) ||
       typeof fractionish === 'bigint' ||
       typeof fractionish === 'number' ||
       typeof fractionish === 'string'
