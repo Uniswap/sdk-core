@@ -6,3 +6,5 @@
 [![npm bundle size (scoped version)](https://img.shields.io/bundlephobia/minzip/@uniswap/sdk-core/latest.svg)](https://bundlephobia.com/result?p=@uniswap/sdk-core@latest)
 
 This code is shared across Uniswap TypeScript SDKs.
+
+A separate package [uniswap-sdk-fraction](https://github.com/hiroshitash/uniswap-sdk-fraction) is available if you only want to use `Fraction` class.
