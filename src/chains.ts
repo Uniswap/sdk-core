@@ -31,7 +31,7 @@ export const SUPPORTED_CHAINS = [
   ChainId.CELO_ALFAJORES,
   ChainId.CELO,
   ChainId.BNB,
-  ChainId.AVALANCHE,
+  ChainId.AVALANCHE
 ] as const
 export type SupportedChainsType = typeof SUPPORTED_CHAINS[number]
 
