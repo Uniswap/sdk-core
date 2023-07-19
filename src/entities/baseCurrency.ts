@@ -53,7 +53,7 @@ export abstract class BaseCurrency {
    * Returns whether this currency is functionally equivalent to the other currency
    * @param other the other currency
    */
-  public abstract equals(other: Currency): boolean
+  public abstract equals(other: BaseCurrency): boolean
 
   /**
    * Return the wrapped version of this currency that can be used with the Uniswap contracts. Currencies must
