@@ -1,4 +1,4 @@
-import { BigNumber } from '@ethersproject/bignumber';
+import { BigNumber } from '@ethersproject/bignumber'
 import invariant from 'tiny-invariant'
 import { checkValidAddress, validateAndParseAddress } from '../utils/validateAndParseAddress'
 import { BaseCurrency } from './baseCurrency'
