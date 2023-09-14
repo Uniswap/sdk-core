@@ -33,17 +33,33 @@ export const UNI_ADDRESSES: AddressMap = constructSameAddressMap('0x1f9840a85d5a
 export const UNISWAP_NFT_AIRDROP_CLAIM_ADDRESS = '0x8B799381ac40b838BBA4131ffB26197C432AFe78'
 
 export const V2_FACTORY_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
-export const V2_FACTORY_ADDRESSES: AddressMap = constructSameAddressMap(V2_FACTORY_ADDRESS, [
-  ChainId.POLYGON,
-  ChainId.OPTIMISM,
-  ChainId.CELO,
-  ChainId.ARBITRUM_ONE,
-  ChainId.BNB,
-  ChainId.AVALANCHE,
-  ChainId.BASE
-])
+const CELO_V2_FACTORY_ADDRESS = '0x79a530c8e2fA8748B7B40dd3629C0520c2cCf03f'
+export const V2_FACTORY_ADDRESSES: AddressMap = {
+  ...constructSameAddressMap(V2_FACTORY_ADDRESS, [
+    ChainId.POLYGON,
+    ChainId.OPTIMISM,
+    ChainId.ARBITRUM_ONE,
+    ChainId.BNB,
+    ChainId.AVALANCHE,
+    ChainId.BASE
+  ]),
+  [ChainId.CELO]: CELO_V2_FACTORY_ADDRESS,
+}
+
 export const V2_ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
-export const V2_ROUTER_ADDRESSES: AddressMap = constructSameAddressMap(V2_ROUTER_ADDRESS)
+export const BASE_V2_ROUTER_ADDRESS = '0x9e5a52f57b3038f1b8eee45f28b3c1967e22799c'
+export const CELO_V2_ROUTER_ADDRESS = '0x16D4F26C15f3658ec65B1126ff27DD3dF2a2996b'
+export const V2_ROUTER_ADDRESSES: AddressMap = {
+  ...constructSameAddressMap(V2_ROUTER_ADDRESS, [
+    ChainId.POLYGON,
+    ChainId.OPTIMISM,
+    ChainId.ARBITRUM_ONE,
+    ChainId.BNB,
+    ChainId.AVALANCHE,
+  ]),
+  [ChainId.BASE]: BASE_V2_ROUTER_ADDRESS,
+  [ChainId.CELO]: CELO_V2_ROUTER_ADDRESS,
+}
 
 // Networks that share most of the same addresses i.e. Mainnet, Goerli, Optimism, Arbitrum, Polygon
 const DEFAULT_ADDRESSES: ChainAddresses = {
