@@ -43,7 +43,7 @@ export const V2_FACTORY_ADDRESSES: AddressMap = {
     ChainId.AVALANCHE,
     ChainId.BASE
   ]),
-  [ChainId.CELO]: CELO_V2_FACTORY_ADDRESS,
+  [ChainId.CELO]: CELO_V2_FACTORY_ADDRESS
 }
 
 export const V2_ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
@@ -55,10 +55,10 @@ export const V2_ROUTER_ADDRESSES: AddressMap = {
     ChainId.OPTIMISM,
     ChainId.ARBITRUM_ONE,
     ChainId.BNB,
-    ChainId.AVALANCHE,
+    ChainId.AVALANCHE
   ]),
   [ChainId.BASE]: BASE_V2_ROUTER_ADDRESS,
-  [ChainId.CELO]: CELO_V2_ROUTER_ADDRESS,
+  [ChainId.CELO]: CELO_V2_ROUTER_ADDRESS
 }
 
 // Networks that share most of the same addresses i.e. Mainnet, Goerli, Optimism, Arbitrum, Polygon
