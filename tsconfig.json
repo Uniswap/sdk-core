@@ -3,7 +3,7 @@
   "exclude": ["src/**/*.test.ts"],
   "compilerOptions": {
     "target": "es2020",
-    "module": "CommonJS",
+    "module": "esnext",
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
