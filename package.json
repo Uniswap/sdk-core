@@ -29,11 +29,12 @@
   "devDependencies": {
     "@types/big.js": "^4.0.5",
     "@types/jest": "^24.0.25",
-    "tslib": "^2.5.1",
-    "typescript": "^5.0.4",
     "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "prettier": "^3.0.3",
     "ts-jest": "^29.1.0",
-    "jest-environment-jsdom": "^29.5.0"
+    "tslib": "^2.5.1",
+    "typescript": "^5.0.4"
   },
   "engines": {
     "node": ">=14"
