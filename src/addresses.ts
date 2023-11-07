@@ -153,6 +153,17 @@ const BASE_GOERLI_ADDRESSES: ChainAddresses = {
   swapRouter02Address: '0x8357227D4eDc78991Db6FDB9bD6ADE250536dE1d'
 }
 
+// Base Sepolia v3 addresses
+const BASE_SEPOLIA_ADDRESSES: ChainAddresses = {
+  v3CoreFactoryAddress: '',
+  multicallAddress: '',
+  quoterAddress: '',
+  v3MigratorAddress: '',
+  nonfungiblePositionManagerAddress: '',
+  tickLensAddress: '',
+  swapRouter02Address: ''
+}
+
 export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses> = {
   [ChainId.MAINNET]: MAINNET_ADDRESSES,
   [ChainId.OPTIMISM]: OPTIMISM_ADDRESSES,
@@ -168,7 +179,8 @@ export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses>
   [ChainId.SEPOLIA]: SEPOLIA_ADDRESSES,
   [ChainId.AVALANCHE]: AVALANCHE_ADDRESSES,
   [ChainId.BASE]: BASE_ADDRESSES,
-  [ChainId.BASE_GOERLI]: BASE_GOERLI_ADDRESSES
+  [ChainId.BASE_GOERLI]: BASE_GOERLI_ADDRESSES,
+  [ChainId.BASE_SEPOLIA]: BASE_SEPOLIA_ADDRESSES
 }
 
 /* V3 Contract Addresses */
