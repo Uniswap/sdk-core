@@ -31,7 +31,7 @@ export class Fraction {
   }
 
   private static tryParseFraction(fractionish: BigintIsh | Fraction): Fraction {
-    if (fractionish instanceof JSBI || typeof fractionish === 'number' || typeof fractionish === 'string')
+    if (fractionish instanceof Array || typeof fractionish === 'number' || typeof fractionish === 'string')
       return new Fraction(fractionish)
 
     if ('numerator' in fractionish && 'denominator' in fractionish) return fractionish
