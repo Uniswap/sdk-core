@@ -101,6 +101,16 @@ const OPTIMISM_GOERLI_ADDRESSES: ChainAddresses = {
   tickLensAddress: '0xe6140Bd164b63E8BfCfc40D5dF952f83e171758e'
 }
 
+// optimism sepolia addresses
+const OPTIMISM_SEPOLIA_ADDRESSES: ChainAddresses = {
+  v3CoreFactoryAddress: '0x8CE191193D15ea94e11d327b4c7ad8bbE520f6aF',
+  multicallAddress: '0x80e4e06841bb76AA9735E0448cB8d003C0EF009a',
+  quoterAddress: '0x0FBEa6cf957d95ee9313490050F6A0DA68039404',
+  v3MigratorAddress: '0xE7EcbAAaA54D007A00dbb6c1d2f150066D69dA07',
+  nonfungiblePositionManagerAddress: '0xdA75cEf1C93078e8b736FCA5D5a30adb97C8957d',
+  tickLensAddress: '0xCb7f54747F58F8944973cea5b8f4ac2209BadDC5'
+}
+
 // arbitrum goerli v3 addresses
 const ARBITRUM_GOERLI_ADDRESSES: ChainAddresses = {
   v3CoreFactoryAddress: '0x4893376342d5D7b3e31d4184c08b265e5aB2A3f6',
@@ -164,6 +174,7 @@ export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses>
   [ChainId.CELO_ALFAJORES]: CELO_ADDRESSES,
   [ChainId.BNB]: BNB_ADDRESSES,
   [ChainId.OPTIMISM_GOERLI]: OPTIMISM_GOERLI_ADDRESSES,
+  [ChainId.OPTIMISM_SEPOLIA]: OPTIMISM_SEPOLIA_ADDRESSES,
   [ChainId.ARBITRUM_GOERLI]: ARBITRUM_GOERLI_ADDRESSES,
   [ChainId.SEPOLIA]: SEPOLIA_ADDRESSES,
   [ChainId.AVALANCHE]: AVALANCHE_ADDRESSES,
