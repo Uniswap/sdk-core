@@ -173,6 +173,17 @@ const BASE_GOERLI_ADDRESSES: ChainAddresses = {
   swapRouter02Address: '0x8357227D4eDc78991Db6FDB9bD6ADE250536dE1d'
 }
 
+//  LUKSO mainnet v3 addresses
+const LUKSO_ADDRESSES: ChainAddresses = {
+  v3CoreFactoryAddress: "0xB0884fB5b6d79124F4E6BD6A34f476A44106bBA2",
+  multicallAddress: "0x923601Dda4E62F01B0bE51F827Be85C37Dad9c86",
+  quoterAddress: "0x6899a2682b7434f3e2424d637767834664aCBe83",
+  v3MigratorAddress: "0x3673c1112b7BAc5703cCfF59dd93f4B359A93aE3",
+  nonfungiblePositionManagerAddress: "0xe1C3193221ABc205F26149b2aD86e7e692eB053e",
+  tickLensAddress: "0x24E5109575e70652E6b7B4F754bdc699afA2D420",
+  swapRouter02Address: "0x7b83F89a86C7bF2596C9d5AA77308c9F6F1B96Bb"
+}
+
 export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses> = {
   [ChainId.MAINNET]: MAINNET_ADDRESSES,
   [ChainId.OPTIMISM]: OPTIMISM_ADDRESSES,
@@ -190,7 +201,8 @@ export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses>
   [ChainId.SEPOLIA]: SEPOLIA_ADDRESSES,
   [ChainId.AVALANCHE]: AVALANCHE_ADDRESSES,
   [ChainId.BASE]: BASE_ADDRESSES,
-  [ChainId.BASE_GOERLI]: BASE_GOERLI_ADDRESSES
+  [ChainId.BASE_GOERLI]: BASE_GOERLI_ADDRESSES,
+  [ChainId.LUKSO]: LUKSO_ADDRESSES
 }
 
 /* V3 Contract Addresses */
