@@ -49,7 +49,7 @@ export const V2_ROUTER_ADDRESSES: AddressMap = {
   [ChainId.BASE]: '0x4752ba5dbc23f44d87826276bf6fd6b1c372ad24',
   [ChainId.AVALANCHE]: '0x4752ba5dbc23f44d87826276bf6fd6b1c372ad24',
   [ChainId.BNB]: '0x4752ba5dbc23f44d87826276bf6fd6b1c372ad24',
-  [ChainId.POLYGON]: '0xedf6066a2b290c185783862c7f4776a2c8077ad1',
+  [ChainId.POLYGON]: '0xedf6066a2b290c185783862c7f4776a2c8077ad1'
 }
 
 // Networks that share most of the same addresses i.e. Mainnet, Goerli, Optimism, Arbitrum, Polygon
