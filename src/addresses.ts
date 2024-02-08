@@ -291,8 +291,11 @@ export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = SUPPORTED_CHAINS.redu
 }, {})
 
 export const SWAP_ROUTER_02_ADDRESSES = (chainId: number) => {
-  if (chainId == ChainId.BNB) {
-    return CHAIN_TO_ADDRESSES_MAP[chainId].swapRouter02Address
+  if (chainId in SUPPORTED_CHAINS) {
+    const id = chainId as SupportedChainsType
+    if (CHAIN_TO_ADDRESSES_MAP[id].swapRouter02Address) {
+      return CHAIN_TO_ADDRESSES_MAP[id].swapRouter02Address
+    } else return '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'
   }
-  return '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'
+  return ''
 }
