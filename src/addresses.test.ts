@@ -22,5 +22,20 @@ describe('addresses', () => {
       const address = SWAP_ROUTER_02_ADDRESSES(ChainId.BNB)
       expect(address).toEqual('0xB971eF87ede563556b2ED4b1C0b0019111Dd85d2')
     })
+
+    it('should return the correct address for arbitrum goerli', () => {
+      const address = SWAP_ROUTER_02_ADDRESSES(ChainId.ARBITRUM_GOERLI)
+      expect(address).toEqual('0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45')
+    })
+
+    it('should return the correct address for optimism sepolia', () => {
+      const address = SWAP_ROUTER_02_ADDRESSES(ChainId.OPTIMISM_SEPOLIA)
+      expect(address).toEqual('0x94cC0AaC535CCDB3C01d6787D6413C739ae12bc4')
+    })
+
+    it('should return the correct address for sepolia', () => {
+        const address = SWAP_ROUTER_02_ADDRESSES(ChainId.SEPOLIA)
+        expect(address).toEqual('0x3bFA4769FB09eefC5a80d6E87c3B9C650f7Ae48E')
+    })
   })
 })
