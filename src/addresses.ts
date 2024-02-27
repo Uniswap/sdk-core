@@ -211,7 +211,7 @@ const ZORA_SEPOLIA_ADDRESSES: ChainAddresses = {
   quoterAddress: '0xC195976fEF0985886E37036E2DF62bF371E12Df0',
   v3MigratorAddress: '0x65ef259b31bf1d977c37e9434658694267674897',
   nonfungiblePositionManagerAddress: '0xB8458EaAe43292e3c1F7994EFd016bd653d23c20',
-  tickLensAddress: '0x23C0F71877a1Fc4e20A78018f9831365c85f3064',
+  tickLensAddress: '0x23C0F71877a1Fc4e20A78018f9831365c85f3064'
 }
 
 const ROOTSTOCK_ADDRESSES: ChainAddresses = {
