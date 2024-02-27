@@ -127,7 +127,8 @@ const OPTIMISM_SEPOLIA_ADDRESSES: ChainAddresses = {
   quoterAddress: '0x0FBEa6cf957d95ee9313490050F6A0DA68039404',
   v3MigratorAddress: '0xE7EcbAAaA54D007A00dbb6c1d2f150066D69dA07',
   nonfungiblePositionManagerAddress: '0xdA75cEf1C93078e8b736FCA5D5a30adb97C8957d',
-  tickLensAddress: '0xCb7f54747F58F8944973cea5b8f4ac2209BadDC5'
+  tickLensAddress: '0xCb7f54747F58F8944973cea5b8f4ac2209BadDC5',
+  swapRouter02Address: '0x94cC0AaC535CCDB3C01d6787D6413C739ae12bc4'
 }
 
 // arbitrum goerli v3 addresses
@@ -147,7 +148,8 @@ const ARBITRUM_SEPOLIA_ADDRESSES: ChainAddresses = {
   quoterAddress: '0x2779a0CC1c3e0E44D2542EC3e79e3864Ae93Ef0B',
   v3MigratorAddress: '0x398f43ef2c67B941147157DA1c5a868E906E043D',
   nonfungiblePositionManagerAddress: '0x6b2937Bde17889EDCf8fbD8dE31C3C2a70Bc4d65',
-  tickLensAddress: '0x0fd18587734e5C2dcE2dccDcC7DD1EC89ba557d9'
+  tickLensAddress: '0x0fd18587734e5C2dcE2dccDcC7DD1EC89ba557d9',
+  swapRouter02Address: '0x101F443B4d1b059569D643917553c771E1b9663E'
 }
 
 // sepolia v3 addresses
@@ -157,7 +159,8 @@ const SEPOLIA_ADDRESSES: ChainAddresses = {
   quoterAddress: '0xEd1f6473345F45b75F8179591dd5bA1888cf2FB3',
   v3MigratorAddress: '0x729004182cF005CEC8Bd85df140094b6aCbe8b15',
   nonfungiblePositionManagerAddress: '0x1238536071E1c677A632429e3655c799b22cDA52',
-  tickLensAddress: '0xd7f33bcdb21b359c8ee6f0251d30e94832baad07'
+  tickLensAddress: '0xd7f33bcdb21b359c8ee6f0251d30e94832baad07',
+  swapRouter02Address: '0x3bFA4769FB09eefC5a80d6E87c3B9C650f7Ae48E'
 }
 
 // Avalanche v3 addresses
@@ -211,6 +214,16 @@ const ZORA_SEPOLIA_ADDRESSES: ChainAddresses = {
   tickLensAddress: '0x23C0F71877a1Fc4e20A78018f9831365c85f3064',
 }
 
+const ROOTSTOCK_ADDRESSES: ChainAddresses = {
+  v3CoreFactoryAddress: '0xaF37EC98A00FD63689CF3060BF3B6784E00caD82',
+  multicallAddress: '0x996a9858cDfa45Ad68E47c9A30a7201E29c6a386',
+  quoterAddress: '0xb51727c996C68E60F598A923a5006853cd2fEB31',
+  v3MigratorAddress: '0x16678977CA4ec3DAD5efc7b15780295FE5f56162',
+  nonfungiblePositionManagerAddress: '0x9d9386c042F194B460Ec424a1e57ACDE25f5C4b1',
+  tickLensAddress: '0x55B9dF5bF68ADe972191a91980459f48ecA16afC',
+  swapRouter02Address: '0x0B14ff67f0014046b4b99057Aec4509640b3947A'
+}
+
 export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses> = {
   [ChainId.MAINNET]: MAINNET_ADDRESSES,
   [ChainId.OPTIMISM]: OPTIMISM_ADDRESSES,
@@ -231,6 +244,7 @@ export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses>
   [ChainId.BASE_GOERLI]: BASE_GOERLI_ADDRESSES,
   [ChainId.ZORA]: ZORA_ADDRESSES,
   [ChainId.ZORA_SEPOLIA]: ZORA_SEPOLIA_ADDRESSES,
+  [ChainId.ROOTSTOCK]: ROOTSTOCK_ADDRESSES
 }
 
 /* V3 Contract Addresses */
@@ -331,7 +345,7 @@ export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = SUPPORTED_CHAINS.redu
 }, {})
 
 export const SWAP_ROUTER_02_ADDRESSES = (chainId: number) => {
-  if (chainId in SUPPORTED_CHAINS) {
+  if (SUPPORTED_CHAINS.includes(chainId)) {
     const id = chainId as SupportedChainsType
     return CHAIN_TO_ADDRESSES_MAP[id].swapRouter02Address ?? '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45'
   }
