@@ -37,5 +37,10 @@ describe('addresses', () => {
       const address = SWAP_ROUTER_02_ADDRESSES(ChainId.SEPOLIA)
       expect(address).toEqual('0x3bFA4769FB09eefC5a80d6E87c3B9C650f7Ae48E')
     })
+
+    it('should return the correct address for bast', () => {
+      const address = SWAP_ROUTER_02_ADDRESSES(ChainId.BLAST)
+      expect(address).toEqual('0x549FEB8c9bd4c12Ad2AB27022dA12492aC452B66')
+    })
   })
 })
