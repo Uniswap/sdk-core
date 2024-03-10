@@ -1,0 +1,48 @@
+iname: Release
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    environment:
+      name: Release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Load secret
+        uses: 1password/load-secrets-action@d1a4e73495bde3551cf63f6c048588b8f734e21d
+        with:
+          # Export loaded secrets as environment variables
+          export-env: true
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          GITHUB_TOKEN: op://npm-deploy/uniswap-open-source-github-token/token
+          NPM_TOKEN: op://npm-deploy/npm-service-account/NPM_TOKEN
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+        if: success()
+
+      - name: Release
+        env:
+          NPM_CONFIG_USERCONFIG: /dev/null
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn release
+        if: success()
