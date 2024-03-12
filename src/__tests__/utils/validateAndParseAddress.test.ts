@@ -1,4 +1,4 @@
-import { checkValidAddress, validateAndParseAddress } from './validateAndParseAddress'
+import { checkValidAddress, validateAndParseAddress } from 'src/utils/validateAndParseAddress'
 
 describe('#validateAndParseAddress', () => {
   it('returns same address if already checksummed', () => {

@@ -1,5 +1,5 @@
-import { CurrencyAmount, Ether, Percent, Price, Token } from '../entities'
-import { computePriceImpact } from './computePriceImpact'
+import { CurrencyAmount, Ether, Percent, Price, Token } from 'src/entities'
+import { computePriceImpact } from 'src/utils/computePriceImpact'
 
 describe('#computePriceImpact', () => {
   const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'

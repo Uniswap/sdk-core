@@ -2,30 +2,43 @@ import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
 
 export const MAX_SAFE_INTEGER = JSBI.BigInt(Number.MAX_SAFE_INTEGER)
-
-const ZERO = JSBI.BigInt(0)
-const ONE = JSBI.BigInt(1)
-const TWO = JSBI.BigInt(2)
+export const MAX_SAFE_INTEGER_BIGINT = BigInt(Number.MAX_SAFE_INTEGER)
 
 /**
  * Computes floor(sqrt(value))
  * @param value the value for which to compute the square root, rounded down
  */
-export function sqrt(value: JSBI): JSBI {
-  invariant(JSBI.greaterThanOrEqual(value, ZERO), 'NEGATIVE')
+export function sqrt<T extends JSBI | bigint>(value: T): T {
+  let bigIntValue: bigint
+  if (typeof value === 'bigint') {
+    bigIntValue = value
+  } else {
+    bigIntValue = BigInt(value.toString(10))
+  }
+
+  invariant(bigIntValue >= 0n, 'NEGATIVE')
 
   // rely on built in sqrt if possible
-  if (JSBI.lessThan(value, MAX_SAFE_INTEGER)) {
-    return JSBI.BigInt(Math.floor(Math.sqrt(JSBI.toNumber(value))))
+  if (bigIntValue < MAX_SAFE_INTEGER_BIGINT) {
+    if (typeof value === 'bigint') {
+      return BigInt(Math.floor(Math.sqrt(Number(bigIntValue)))) as T
+    } else {
+      return JSBI.BigInt(Math.floor(Math.sqrt(Number(bigIntValue)))) as T
+    }
   }
 
-  let z: JSBI
-  let x: JSBI
-  z = value
-  x = JSBI.add(JSBI.divide(value, TWO), ONE)
-  while (JSBI.lessThan(x, z)) {
+  let z: bigint
+  let x: bigint
+  z = bigIntValue
+  x = bigIntValue / 2n + 1n
+  while (x < z) {
     z = x
-    x = JSBI.divide(JSBI.add(JSBI.divide(value, x), x), TWO)
+    x = (bigIntValue / x + x) / 2n
   }
-  return z
+
+  if (typeof value === 'bigint') {
+    return z as T
+  } else {
+    return JSBI.BigInt(z.toString(10)) as T
+  }
 }

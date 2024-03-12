@@ -1,4 +1,4 @@
-import { Token } from './token'
+import { Token } from 'src/entities/token'
 import { BigNumber } from '@ethersproject/bignumber'
 
 describe('Token', () => {

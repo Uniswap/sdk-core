@@ -1,4 +1,4 @@
-import { Ether, Token } from './index'
+import { Ether, Token } from 'src/entities/index'
 
 describe('Currency', () => {
   const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
