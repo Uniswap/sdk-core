@@ -90,6 +90,16 @@ const ARBITRUM_ONE_ADDRESSES: ChainAddresses = {
 }
 const POLYGON_ADDRESSES: ChainAddresses = DEFAULT_ADDRESSES
 
+// nova v3 addresses
+const NOVA_ADDRESSES: ChainAddresses = {
+  v3CoreFactoryAddress: '0xaA8244D4170d82cD8B563A938688D22020dfba57',
+  multicallAddress: '0x042dE258B58F316f8c60623AB68c3d9776F55A9B',
+  quoterAddress: '0x6c0E7ee7F6Ca01C1edbf04D095579D699d3600Fe',
+  v3MigratorAddress: '0x3899C4D144f04EBf1731a5149c339E132d1cd53E',
+  nonfungiblePositionManagerAddress: '0xb679d99460E4C89C44354CCFcBA0Ee29E097a8b2',
+  tickLensAddress: '0x68e78a3f747BFEa2517Dc1cA25C0C9B447643930'
+}
+
 // celo v3 addresses
 const CELO_ADDRESSES: ChainAddresses = {
   v3CoreFactoryAddress: '0xAfE208a311B21f13EF87E33A90049fC17A7acDEc',
@@ -237,6 +247,7 @@ const BLAST_ADDRESSES: ChainAddresses = {
 
 export const CHAIN_TO_ADDRESSES_MAP: Record<SupportedChainsType, ChainAddresses> = {
   [ChainId.MAINNET]: MAINNET_ADDRESSES,
+  [ChainId.NOVA]: NOVA_ADDRESSES,
   [ChainId.OPTIMISM]: OPTIMISM_ADDRESSES,
   [ChainId.ARBITRUM_ONE]: ARBITRUM_ONE_ADDRESSES,
   [ChainId.POLYGON]: POLYGON_ADDRESSES,
