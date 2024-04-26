@@ -13,12 +13,10 @@
     "uniswap",
     "ethereum"
   ],
-  "module": "dist/sdk-core.esm.js",
   "scripts": {
-    "build": "tsdx build",
-    "start": "tsdx watch",
-    "test": "tsdx test",
-    "prepublishOnly": "tsdx build"
+    "build": "tsc",
+    "test": "jest",
+    "prepublishOnly": "tsc"
   },
   "dependencies": {
     "@ethersproject/address": "^5.0.2",
@@ -31,10 +29,15 @@
   "devDependencies": {
     "@types/big.js": "^4.0.5",
     "@types/jest": "^24.0.25",
-    "tsdx": "^0.14.1"
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "prettier": "^3.0.3",
+    "ts-jest": "^29.1.0",
+    "tslib": "^2.5.1",
+    "typescript": "^5.0.4"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=14"
   },
   "prettier": {
     "printWidth": 120,

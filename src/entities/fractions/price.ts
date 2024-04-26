@@ -1,4 +1,3 @@
-import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
 
 import { BigintIsh, Rounding } from '../../constants'
@@ -30,24 +29,21 @@ export class Price<TBase extends Currency, TQuote extends Currency> extends Frac
         args[0].baseAmount.currency,
         args[0].quoteAmount.currency,
         result.denominator,
-        result.numerator
+        result.numerator,
       ]
     }
     super(numerator, denominator)
 
     this.baseCurrency = baseCurrency
     this.quoteCurrency = quoteCurrency
-    this.scalar = new Fraction(
-      JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(baseCurrency.decimals)),
-      JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(quoteCurrency.decimals))
-    )
+    this.scalar = new Fraction(10n ** BigInt(baseCurrency.decimals), 10n ** BigInt(quoteCurrency.decimals))
   }
 
   /**
    * Flip the price, switching the base and quote currency
    */
   public invert(): Price<TQuote, TBase> {
-    return new Price(this.quoteCurrency, this.baseCurrency, this.numerator, this.denominator)
+    return new Price(this.quoteCurrency, this.baseCurrency, this._numerator, this._denominator)
   }
 
   /**
@@ -57,7 +53,7 @@ export class Price<TBase extends Currency, TQuote extends Currency> extends Frac
   public multiply<TOtherQuote extends Currency>(other: Price<TQuote, TOtherQuote>): Price<TBase, TOtherQuote> {
     invariant(this.quoteCurrency.equals(other.baseCurrency), 'TOKEN')
     const fraction = super.multiply(other)
-    return new Price(this.baseCurrency, other.quoteCurrency, fraction.denominator, fraction.numerator)
+    return new Price(this.baseCurrency, other.quoteCurrency, fraction._denominator, fraction._numerator)
   }
 
   /**
@@ -67,7 +63,7 @@ export class Price<TBase extends Currency, TQuote extends Currency> extends Frac
   public quote(currencyAmount: CurrencyAmount<TBase>): CurrencyAmount<TQuote> {
     invariant(currencyAmount.currency.equals(this.baseCurrency), 'TOKEN')
     const result = super.multiply(currencyAmount)
-    return CurrencyAmount.fromFractionalAmount(this.quoteCurrency, result.numerator, result.denominator)
+    return CurrencyAmount.fromFractionalAmount(this.quoteCurrency, result._numerator, result._denominator)
   }
 
   /**
